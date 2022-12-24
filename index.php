@@ -11,21 +11,9 @@ $LANG = new Language();
         </title>
     </head>
     <body>
-        <header>
-            <!-- Top header menu containing logo and Navigation bar -->
-            <div id="header-title">
-                <nav>
-                    <?php echo $LANG["title"];?>
-                </nav>
-            </div>
-            <div id="header-lang">
-                <nav>
-                    <a href="<?php echo parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?>?lang=en">EN</a>
-                </nav>
-                <nav>
-                    <a href="<?php echo parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?>?lang=zh">ZH</a>
-                </nav>
-        </header>
+        <?php
+        require_once "fragment/header.php";
+        ?>
         <h1></h1>
         <?php
         require_once "include/json.php";
