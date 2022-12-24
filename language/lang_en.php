@@ -1,6 +1,6 @@
 <?php
-$language = ["tag" => "en"
-    , "title" => "Score Tracker"
+return ["tag" => "en"
+      , "title" => "Score Tracker"
 ];
 /*
  * Local Variables:
