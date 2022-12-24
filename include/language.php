@@ -16,7 +16,7 @@ function define_language($available)
 }
 function config_language()
 {
-    $lang_tag = define_language(array('en','zh'));
+    $lang_tag = define_language(['en','zh']);
     require_once "language/lang_" . $lang_tag . ".php";
     return $language;
 }
