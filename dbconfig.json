@@ -1,0 +1,10 @@
+"mariaDB" :  {
+    "connection" : {
+        "host" : "127.0.0.1"
+        "port" : 8900
+    },
+    "account" : {
+        "user" : "infMan",
+        "pass" : "a9!R/jsCLnHk8(YK"
+    }
+}
