@@ -7,3 +7,8 @@ This tools is created to assist the user on managing their study time.
 * PHP
 * MariaDB / Mysql
 * Mysqli
+
+## Notes
+### Config Dbconfig.json
+The file `config/dbconfig.json` contains an example database parameter.
+Replace the information contained in the `config/dbconfig.json` file before use
