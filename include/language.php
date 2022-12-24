@@ -11,6 +11,7 @@ class Language implements ArrayAccess
             }
         }
         // No language specification supplied by the get parameter
+        // Revert to default 'en' language
         if(!isset($_SESSION['lang']) || $_SESSION['lang']==''){
             $_SESSION['lang'] = 'en';
         }
