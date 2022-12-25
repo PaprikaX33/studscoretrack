@@ -21,8 +21,8 @@ $LANG = new Language();
             <header>
                 <nav id="header-container">
                     <ul>
-                        <li><a href="/">ScoreTracker</a></li>
-                        <li><a href="/">Archived</a></li>
+                        <li><a href="/course_list.php">ScoreTracker</a></li>
+                        <li><a href="/archived.php">Archived</a></li>
                         <li><a href="/">Summary</a></li>
                         <li id="header-mid-pad"></li>
                         <li id="header-lang">
