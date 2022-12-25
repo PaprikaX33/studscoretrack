@@ -1,7 +1,4 @@
 <?php
-require_once "include/session.php";
-require_once "include/language.php";
-$LANG = new Language();
 $PAGE_TITLE_TAG = "page-course-title";
 require_once "fragment/header.php";
 ?>

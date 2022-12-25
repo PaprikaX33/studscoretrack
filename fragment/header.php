@@ -1,3 +1,8 @@
+<?php
+require_once "include/session.php";
+require_once "include/language.php";
+$LANG = new Language();
+?>
 <!DOCTYPE html>
 <html lang="<?php echo $LANG["tag"] ?>">
     <head>
