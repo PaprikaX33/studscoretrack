@@ -19,6 +19,9 @@ echo "</pre>";
     <form id="selt" method="POST" action="/debug.php">
         <input name="act" type="hidden" value="selt" />
     </form>
+    <form id="cust" method="POST" action="/debug.php">
+        <input name="act" type="hidden" value="cust" />
+    </form>
     <table class="key-val-table">
         <tbody>
             <tr>
@@ -35,6 +38,13 @@ echo "</pre>";
                 </td>
                 <td>
                     <input form="selt" type="submit" value="select test"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input form="cust" type="submit" value="custom"/>
+                </td>
+                <td>
                 </td>
             </tr>
         </tbody>
@@ -83,6 +93,9 @@ FOREIGN KEY (courseID) REFERENCES course(courseID)
                     case "selc":
                         var_dump($sqlcon->query("SELECT * FROM course;")->fetch_all());
                         break;
+                    case "cust":
+                        var_dump($sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_all()[0][0]);
+                        break;
                     default: break;
                 }
             }
@@ -99,10 +112,10 @@ FOREIGN KEY (courseID) REFERENCES course(courseID)
     phpinfo(INFO_GENERAL);
     ?>
 </div>
-    <?php
-    require_once "fragment/closer.php";
-    /*
-     * Local Variables:
-     * mode: web
-     * End:
-     * End: */?>
+<?php
+require_once "fragment/closer.php";
+/*
+ * Local Variables:
+ * mode: web
+ * End:
+ * End: */?>
