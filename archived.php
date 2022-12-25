@@ -40,7 +40,6 @@ require_once "fragment/header.php";
                 Maybe
             </td>
         </tr>
-        </tr>
     </tbody>
 </table>
 <?php

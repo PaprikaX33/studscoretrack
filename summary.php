@@ -5,33 +5,20 @@ require_once "fragment/header.php";
 <table>
     <tbody>
         <tr>
-            <td class="course-name">
-                Seminar on something something
+            <td class="table-key">
+                Key 1
             </td>
-            <td class="course-score">
-                90
-            </td>
-            <td class="course-max">
-                100
-            </td>
-            <td class="course-pass">
-                Passable
+            <td class="table-val">
+                Val 1
             </td>
         </tr>
         <tr>
-            <td class="course-name">
-                Seminar on nothing really
+            <td class="table-key">
+                Key 2
             </td>
-            <td class="course-score">
-                100
+            <td class="table-val">
+                Val 2
             </td>
-            <td class="course-max">
-                1000
-            </td>
-            <td class="course-pass">
-                Maybe
-            </td>
-        </tr>
         </tr>
     </tbody>
 </table>
