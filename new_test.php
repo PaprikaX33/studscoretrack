@@ -3,7 +3,7 @@ $PAGE_TITLE_TAG = "page-new-test-title";
 require_once "fragment/header.php";
 ?>
 <div class="content-block">
-    <form id="new-course-form" method="POST" action="/post_course.php">
+    <form id="new-course-form" method="POST" action="/post_test.php">
         <input name="courseid" type="hidden" />
         <table class="key-val-table">
             <tbody>
