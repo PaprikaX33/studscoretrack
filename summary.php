@@ -1,16 +1,8 @@
 <?php
-$PAGE_TITLE_TAG = "page-archive-title";
+$PAGE_TITLE_TAG = "page-summary-title";
 require_once "fragment/header.php";
 ?>
 <table>
-    <thead>
-        <tr>
-            <th>Course Title</th>
-            <th>Average Score</th>
-            <th>Maximum Score</th>
-            <th>Passable</th>
-        </tr>
-    </thead>
     <tbody>
         <tr>
             <td class="course-name">

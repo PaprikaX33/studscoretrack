@@ -1,6 +1,7 @@
 <?php
 require_once "include/session.php";
 require_once "include/language.php";
+$PAGE_TITLE_TAG ??= "undefined";
 $LANG = new Language();
 ?>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ $LANG = new Language();
                     <ul>
                         <li><a href="/course_list.php">ScoreTracker</a></li>
                         <li><a href="/archived.php">Archived</a></li>
-                        <li><a href="/">Summary</a></li>
+                        <li><a href="/summary.php">Summary</a></li>
                         <li id="header-mid-pad"></li>
                         <li id="header-lang">
                             <div>
@@ -38,9 +39,10 @@ $LANG = new Language();
             </header>
             <div id="main-content">
                 <h1 id="page-title"><?php echo $LANG[$PAGE_TITLE_TAG] ?></h1>
-                <?php
-                /*
-                 * Local Variables:
-                 * mode: web
-                 * End:
-                 * End: */?>
+                <div id="page-content">
+                    <?php
+                    /*
+                     * Local Variables:
+                     * mode: web
+                     * End:
+                     * End: */?>
