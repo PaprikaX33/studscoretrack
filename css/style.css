@@ -1,43 +1,67 @@
-header{
-    overflow: hidden;
+body{
+    margin:0;
 }
-
-.header-container{    
+.header-container{
+    position: fixed;
+    top: 0;
     text-align: center;
     height: 3em;
+    width: 100%;
 }
 
 .header-container a {
-    display: inline-block;
+    display: flex;
+    justify-content: center; /* Align horizontal */
+    align-items: center; /* Align vertical */
     padding: 0em 1.5em;
     text-decoration: none;
-    line-height: 3em;
-    margin: 0;
-}
-
-.header-navigation{
-    float: left;
-    width: 70%;
-    height: 100%;
-    margin: 0;
-}
-
-.header-navigation div{
     text-align: center;
-    float: left;
+    margin: 0;
+    color: black;
+    height: 100%;
 }
 
-.header-lang{
+.header-container a:hover {
+    background-color: #9faf9f;
+}
+
+.header-container li{
     float: left;
-    width: 30%;
     height: 100%;
+    border-right: 1px solid #000;
+}
+
+.header-container li:last-child {
+    border-right: none;
+}
+
+.header-container ul{
+    background-color: #cfcfcf;
+    list-style-type: none;
     margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.header-container li.header-lang{
+    float: right;
+    height: 100%;
 }
 
 .header-lang div{
     text-align: center;
-    float: right;
+    float: left;
+    height: 100%;
 }
-.header-lang div a, .header-lang div div{
-    padding: 0;
+
+.header-lang div {
+    border-right: 1px solid #000;
+}
+.header-lang div:last-child {
+    border-right: none;
+}
+
+.header-lang div a {
+    padding: 0 0.5em;
 }
