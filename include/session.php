@@ -1,6 +1,5 @@
 <?php
-http_response_code(301);
-header('Location: /course_list.php');
+session_start();
 /*
  * Local Variables:
  * mode: web
