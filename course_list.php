@@ -7,13 +7,13 @@ $LANG = new Language();
 <html lang="<?php echo $LANG["tag"] ?>">
     <head>
         <title>Score Tracker</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/heading.css">
     </head>
     <body>
         <?php
         require_once "fragment/header.php";
         ?>
-        <div id="body-main">
+        <div id="main-content">
             <div id="page-title">
                 <h2> Course List </h2>
             </div>
@@ -43,6 +43,7 @@ $LANG = new Language();
                             </td>
                         </tr>
                     </tbody>
+                </table>
             </div>
         </div>
         <?php
