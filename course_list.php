@@ -34,7 +34,8 @@ require_once "fragment/header.php";
                     break;
                 default: break;
             }
-            $query = "SELECT courseID AS id, ".$lang_name." AS name FROM course WHERE archived=FALSE";
+            $query = "SELECT courseID AS id, "
+                    .$lang_name." AS name FROM course WHERE archived=FALSE";
             $res = $sqlcon->query($query);
             while ($row = $res->fetch_assoc()) {
                 printf("<tr onclick=\"window.location='/course.php?id=%d';\">

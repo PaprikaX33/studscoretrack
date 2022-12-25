@@ -10,7 +10,7 @@ $sqlcon = db_init();
 $last_sem = $sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_row()[0];
 $last_sem ??= 0;
 
-$query = "INSERT INTO course(en_name, zh_name, semester, credits, numoftest, passing)
+$query = "INSERT INTO course(en_name, zh_name, semester, credit, numoftest, passing)
 VALUES (?, ?, ?, ?, ?, ?);";
 $stmt = $sqlcon->prepare($query);
 $ename = $_POST["ename"];
@@ -21,8 +21,9 @@ $grade = $_POST["grade"];
 
 $stmt->bind_param("ssiiii", ...[$ename, $cname, $last_sem + 1, $credit, $test, $grade]);
 $stmt->execute();
+$courseid = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
 $sqlcon->close();
-header('Location: /course_list.php');
+header('Location: /course.php?id='.(string)$courseid);
 /*
  * Local Variables:
  * mode: web

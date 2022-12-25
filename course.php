@@ -1,5 +1,6 @@
 <?php
 $PAGE_TITLE_TAG = "page-course-data-title";
+require_once "include/db_con.php";
 require_once "fragment/header.php";
 ?>
 <div class="content-block">
