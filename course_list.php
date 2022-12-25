@@ -54,6 +54,7 @@ require_once "fragment/header.php";
             </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"]));
                 //printf("%s (%s)\n", $row["Name"], $row["CountryCode"]);
             }
+            $sqlcon->close();
             ?>
         </tbody>
     </table>

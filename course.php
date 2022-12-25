@@ -10,10 +10,12 @@ $sqlcon = db_init();
 $maxcourse = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
 if($_GET["id"] > $maxcourse){
     header('Location: /course_list.php');
+    die();
 }
-$query = "SELECT en_name, zh_name, credit, semester, passing
+$query = "SELECT en_name, zh_name, credit, semester, passing, archived
  FROM course WHERE courseID=".(string)$_GET["id"];
-$res = $sqlcon->query($query)->fetch_assoc() ?? [];
+$res = $sqlcon->query($query)->fetch_assoc();
+$sqlcon->close();
 ?>
 <div class="content-block">
     <table class="key-val-table">
@@ -68,10 +70,12 @@ $res = $sqlcon->query($query)->fetch_assoc() ?? [];
     </table>
 </div>
 <div class="content-block">
-    <h2>Test Results</h2>
-    <div class="control-block">
-        <a href="/new_test.php">Add new test result</a>
-    </div>
+    <h2>Test Results</h2><?php
+                         if (!$res["archived"]){
+                             printf("<div class=\"control-block\">
+<a href=\"/new_test.php?cid=%d\">Add new test result</a></div>", $_GET['id']);
+                         }
+                         ?>
 </div>
 <div class="content-block">
     <table>

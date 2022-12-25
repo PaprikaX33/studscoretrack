@@ -24,6 +24,7 @@ $stmt->execute();
 $courseid = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
 $sqlcon->close();
 header('Location: /course.php?id='.(string)$courseid);
+die();
 /*
  * Local Variables:
  * mode: web

@@ -41,6 +41,7 @@ require_once "fragment/header.php";
                 </td>
             </tr>", $row["id"], $row["name"], $row["credit"], $row["semester"]);
         }
+        $sqlcon->close();
         ?>
     </tbody>
 </table>

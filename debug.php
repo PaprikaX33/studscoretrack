@@ -79,7 +79,7 @@ archived BOOL NOT NULL DEFAULT FALSE,
 PRIMARY KEY (courseID)
 );");
                         echo $sqlcon->query("CREATE TABLE test (
-scoreID INT NOT NULL AUTO_INCREMENT,
+testID INT NOT NULL AUTO_INCREMENT,
 courseID INT NOT NULL,
 name VARCHAR(50),
 score INT NOT NULL,
@@ -98,7 +98,7 @@ FOREIGN KEY (courseID) REFERENCES course(courseID)
                         var_dump($sqlcon->query("SELECT * FROM course;")->fetch_all());
                         break;
                     case "custa":
-                        var_dump($sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_all()[0][0]);
+                        var_dump($sqlcon->query("SELECT * FROM test")->fetch_assoc());
                         break;
                     case "custb":
                         var_dump($sqlcon->query("SELECT en_name, zh_name, credit, semester, numoftest, passing

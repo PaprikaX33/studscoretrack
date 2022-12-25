@@ -1,10 +1,23 @@
 <?php
+if($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['cid']) || $_GET['cid'] == ''){
+    header('Location: /course_list.php');
+    die();
+}
 $PAGE_TITLE_TAG = "page-new-test-title";
+require_once "include/db_con.php";
+$cid = $_GET["cid"];
+$sqlcon = db_init();
+$maxcourse = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
+if($cid > $maxcourse){
+    header('Location: /course_list.php');
+    die();
+}
+$sqlcon->close();
 require_once "fragment/header.php";
 ?>
 <div class="content-block">
     <form id="new-course-form" method="POST" action="/post_test.php">
-        <input name="courseid" type="hidden" value="1" />
+        <input name="courseid" type="hidden" value="<?php echo $cid; ?>" />
         <table class="key-val-table">
             <tbody>
                 <tr>
