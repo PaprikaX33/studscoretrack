@@ -18,18 +18,31 @@ $LANG = new Language();
                 <h2> Course List </h2>
             </div>
             <div id="page-content">
-                <div id="course-name">
-                    Seminar on something something
-                </div>
-                <div id="course-score">
-                    90
-                </div>
-                <div id="course-max">
-                    100
-                </div>
-                <div id="course-pass">
-                    Passable
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course Title</th>
+                            <th>Average Score</th>
+                            <th>Maximum Score</th>
+                            <th>Passable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="course-name">
+                                Seminar on something something
+                            </td>
+                            <td id="course-score">
+                                90
+                            </td>
+                            <td id="course-max">
+                                100
+                            </td>
+                            <td id="course-pass">
+                                Passable
+                            </td>
+                        </tr>
+                    </tbody>
             </div>
         </div>
     </body>

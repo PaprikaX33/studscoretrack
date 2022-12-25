@@ -1,3 +1,43 @@
 header{
     overflow: hidden;
 }
+
+.header-container{    
+    text-align: center;
+    height: 3em;
+}
+
+.header-container a {
+    display: inline-block;
+    padding: 0em 1.5em;
+    text-decoration: none;
+    line-height: 3em;
+    margin: 0;
+}
+
+.header-navigation{
+    float: left;
+    width: 70%;
+    height: 100%;
+    margin: 0;
+}
+
+.header-navigation div{
+    text-align: center;
+    float: left;
+}
+
+.header-lang{
+    float: left;
+    width: 30%;
+    height: 100%;
+    margin: 0;
+}
+
+.header-lang div{
+    text-align: center;
+    float: right;
+}
+.header-lang div a, .header-lang div div{
+    padding: 0;
+}
