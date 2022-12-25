@@ -1,7 +1,19 @@
 <?php
+if($_SERVER['REQUEST_METHOD'] != 'GET' || !isset($_GET['id']) || $_GET['id'] == ''){
+    header('Location: /course_list.php');
+    die();
+}
 $PAGE_TITLE_TAG = "page-course-data-title";
 require_once "include/db_con.php";
 require_once "fragment/header.php";
+$sqlcon = db_init();
+$maxcourse = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
+if($_GET["id"] > $maxcourse){
+    header('Location: /course_list.php');
+}
+$query = "SELECT en_name, zh_name, credit, semester, passing
+ FROM course WHERE courseID=".(string)$_GET["id"];
+$res = $sqlcon->query($query)->fetch_assoc() ?? [];
 ?>
 <div class="content-block">
     <table class="key-val-table">
@@ -10,24 +22,20 @@ require_once "fragment/header.php";
                 <td>
                     Course English Name
                 </td>
-                <td>
-                    Val 1
-                </td>
+                <td><?php echo $res["en_name"] ?></td>
             </tr>
             <tr>
                 <td>
                     Course Chinese name
                 </td>
-                <td>
-                    Val 2
-                </td>
+                <td><?php echo $res["zh_name"] ?></td>
             </tr>
             <tr>
                 <td>
                     Current Average Score
                 </td>
                 <td>
-                    Val 2
+                    TODO
                 </td>
             </tr>
             <tr>
@@ -35,40 +43,26 @@ require_once "fragment/header.php";
                     Maximum Possible Score
                 </td>
                 <td>
-                    Val 2
+                    TODO
                 </td>
             </tr>
             <tr>
                 <td>
                     Course Credits
                 </td>
-                <td>
-                    Val 2
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Passing grade
-                </td>
-                <td>
-                    Val 2
-                </td>
+                <td><?php echo $res["credit"] ?></td>
             </tr>
             <tr>
                 <td>
                     Minimum average score for passable grade
                 </td>
-                <td>
-                    Val 2
-                </td>
+                <td><?php echo $res["passing"] ?></td>
             </tr>
             <tr>
                 <td>
                     Semester
                 </td>
-                <td>
-                    Val 2
-                </td>
+                <td><?php echo $res["semester"] ?></td>
             </tr>
         </tbody>
     </table>

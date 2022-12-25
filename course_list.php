@@ -51,7 +51,7 @@ require_once "fragment/header.php";
                 <td class=\"course-pass\">
                     Passable
                 </td>
-            </tr>", $row["id"], $row["name"]);
+            </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"]));
                 //printf("%s (%s)\n", $row["Name"], $row["CountryCode"]);
             }
             ?>

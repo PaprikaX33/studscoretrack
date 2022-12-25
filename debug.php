@@ -19,8 +19,11 @@ echo "</pre>";
     <form id="selt" method="POST" action="/debug.php">
         <input name="act" type="hidden" value="selt" />
     </form>
-    <form id="cust" method="POST" action="/debug.php">
-        <input name="act" type="hidden" value="cust" />
+    <form id="custa" method="POST" action="/debug.php">
+        <input name="act" type="hidden" value="custa" />
+    </form>
+    <form id="custb" method="POST" action="/debug.php">
+        <input name="act" type="hidden" value="custb" />
     </form>
     <table class="key-val-table">
         <tbody>
@@ -42,9 +45,10 @@ echo "</pre>";
             </tr>
             <tr>
                 <td>
-                    <input form="cust" type="submit" value="custom"/>
+                    <input form="custa" type="submit" value="custom"/>
                 </td>
                 <td>
+                    <input form="custb" type="submit" value="custom"/>
                 </td>
             </tr>
         </tbody>
@@ -93,8 +97,12 @@ FOREIGN KEY (courseID) REFERENCES course(courseID)
                     case "selc":
                         var_dump($sqlcon->query("SELECT * FROM course;")->fetch_all());
                         break;
-                    case "cust":
+                    case "custa":
                         var_dump($sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_all()[0][0]);
+                        break;
+                    case "custb":
+                        var_dump($sqlcon->query("SELECT en_name, zh_name, credit, semester, numoftest, passing
+ FROM course WHERE courseID=7")->fetch_assoc());
                         break;
                     default: break;
                 }
