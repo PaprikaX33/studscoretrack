@@ -53,3 +53,9 @@
 .flex-pad{
     flex:auto;
 }
+
+form input[type="text"] {
+    width:90%;
+    padding:0 0;
+    margin:0;
+}

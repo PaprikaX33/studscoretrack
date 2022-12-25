@@ -9,26 +9,32 @@ require_once "fragment/header.php";
             <tbody>
                 <tr>
                     <td>
-                        Test Title
+                        <label for="tname">
+                            Test Title
+                        </label>
                     </td>
                     <td>
-                        <input name="name" type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Test Weight
-                    </td>
-                    <td>
-                        <input name="weight" type="text" inputmode="numeric" pattern="\d*" required />
+                        <input id="tname" name="name" type="text" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Test Score
+                        <label for="twg">
+                            Test Weight
+                        </label>
                     </td>
                     <td>
-                        <input name="credit" type="text" inputmode="numeric" pattern="\d*" required />
+                        <input id="twg" name="weight" type="text" inputmode="numeric" pattern="\d*" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ts">
+                            Test Score
+                        </label>
+                    </td>
+                    <td>
+                        <input id="ts" name="score" type="text" inputmode="numeric" pattern="\d*" required />
                     </td>
                 </tr>
                 <tr>
