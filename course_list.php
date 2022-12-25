@@ -16,9 +16,7 @@ $LANG = new Language();
         require_once "fragment/header.php";
         ?>
         <div id="main-content">
-            <div id="page-title">
-                <h2> Course List </h2>
-            </div>
+            <h1 id="page-title">Course List</h1>
             <div id="page-content">
                 <table>
                     <thead>
@@ -31,18 +29,32 @@ $LANG = new Language();
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="course-name">
+                            <td class="course-name">
                                 Seminar on something something
                             </td>
-                            <td id="course-score">
+                            <td class="course-score">
                                 90
                             </td>
-                            <td id="course-max">
+                            <td class="course-max">
                                 100
                             </td>
-                            <td id="course-pass">
+                            <td class="course-pass">
                                 Passable
                             </td>
+                            <tr>
+                                <td class="course-name">
+                                    Seminar on nothing really
+                                </td>
+                                <td class="course-score">
+                                    100
+                                </td>
+                                <td class="course-max">
+                                    1000
+                                </td>
+                                <td class="course-pass">
+                                    Maybe
+                                </td>
+                            </tr>
                         </tr>
                     </tbody>
                 </table>
