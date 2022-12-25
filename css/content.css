@@ -18,3 +18,10 @@
 #page-content tr:nth-child(even){
     background-color: #d0d0d0;
 }
+
+#page-content>table.flip-row-highlight tr:nth-child(even){
+    background-color: #ffffff;
+}
+#page-content>table.flip-row-highlight tr:nth-child(odd){
+    background-color: #d0d0d0;
+}

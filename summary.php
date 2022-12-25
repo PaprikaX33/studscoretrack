@@ -2,7 +2,7 @@
 $PAGE_TITLE_TAG = "page-summary-title";
 require_once "fragment/header.php";
 ?>
-<table>
+<table class="flip-row-highlight">
     <tbody>
         <tr>
             <td class="table-key">
