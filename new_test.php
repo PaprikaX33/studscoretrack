@@ -1,55 +1,40 @@
 <?php
-$PAGE_TITLE_TAG = "page-new-course-title";
+$PAGE_TITLE_TAG = "page-new-test-title";
 require_once "fragment/header.php";
 ?>
 <div class="content-block">
     <form id="new-course-form" method="POST" action="/post_course.php">
+        <input name="courseid" type="hidden" />
         <table class="key-val-table">
             <tbody>
                 <tr>
                     <td>
-                        Course English Name
+                        Test Title
                     </td>
                     <td>
-                        <input name="ename" type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Course Chinese name
-                    </td>
-                    <td>
-                        <input name="cname" type="text" />
+                        <input name="name" type="text" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Course Credits
+                        Test Weight
+                    </td>
+                    <td>
+                        <input name="weight" type="text" inputmode="numeric" pattern="\d*" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Test Score
                     </td>
                     <td>
                         <input name="credit" type="text" inputmode="numeric" pattern="\d*" required />
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        Number of test
-                    </td>
-                    <td>
-                        <input name="test" type="text" inputmode="numeric" pattern="\d*" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Passing grade
-                    </td>
-                    <td>
-                        <input name="grade" type="text" inputmode="numeric" pattern="\d*" />
-                    </td>
-                </tr>
-                <tr>
                     <td></td>
                     <td>
-                        <input type="submit" value="Add New Course" />
+                        <input type="submit" value="Add New Test" />
                     </td>
                 </tr>
             </tbody>

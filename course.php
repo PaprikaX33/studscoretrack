@@ -75,7 +75,7 @@ require_once "fragment/header.php";
 <div class="content-block">
     <h2>Test Results</h2>
     <div class="control-block">
-        Add new test result
+        <a href="/new_test.php">Add new test result</a>
     </div>
 </div>
 <div class="content-block">
