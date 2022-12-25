@@ -24,9 +24,9 @@ require_once "fragment/header.php";
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr onclick="window.location='/course.php';">
                 <td class="course-name">
-                    <a href="/course.php">Seminar on something something</a>
+                    Seminar on something something
                 </td>
                 <td class="course-score">
                     90
@@ -38,9 +38,9 @@ require_once "fragment/header.php";
                     Passable
                 </td>
             </tr>
-            <tr>
+            <tr onclick="window.location='/course.php';">
                 <td class="course-name">
-                    <a href="/course.php">Seminar on nothing really</a>
+                    Seminar on nothing really
                 </td>
                 <td class="course-score">
                     100

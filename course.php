@@ -31,6 +31,38 @@ require_once "fragment/header.php";
             </tr>
             <tr>
                 <td>
+                    Maximum Possible Score
+                </td>
+                <td>
+                    Val 2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Course Credits
+                </td>
+                <td>
+                    Val 2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Passing grade
+                </td>
+                <td>
+                    Val 2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Minimum average score for passable grade
+                </td>
+                <td>
+                    Val 2
+                </td>
+            </tr>
+            <tr>
+                <td>
                     Semester
                 </td>
                 <td>
@@ -41,14 +73,16 @@ require_once "fragment/header.php";
     </table>
 </div>
 <div class="content-block">
-    <h2>Score</h2>
-    Add new score
+    <h2>Test Results</h2>
+    <div class="control-block">
+        Add new test result
+    </div>
 </div>
 <div class="content-block">
     <table>
         <thead>
             <tr>
-                <th>Score Title</th>
+                <th>Test Title</th>
                 <th>Score</th>
                 <th>Weight</th>
                 <th>Note</th>

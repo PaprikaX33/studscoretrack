@@ -6,9 +6,9 @@ require_once "fragment/header.php";
     <thead>
         <tr>
             <th>Course Title</th>
-            <th>Average Score</th>
-            <th>Maximum Score</th>
-            <th>Passable</th>
+            <th>Score</th>
+            <th>Credit</th>
+            <th>Semester</th>
         </tr>
     </thead>
     <tbody>
