@@ -6,7 +6,7 @@ $LANG = new Language();
 <!DOCTYPE html>
 <html lang="<?php echo $LANG["tag"] ?>">
     <head>
-        <title><?php echo $LANG[$PAGE_TITLE_TAG] ?? "--??--"; ?>- Score Tracker</title>
+        <title><?php echo $LANG[$PAGE_TITLE_TAG] ?>- Score Tracker</title>
         <link rel="stylesheet" type="text/css" href="css/heading.css">
         <link rel="stylesheet" type="text/css" href="css/padding.css">
         <link rel="stylesheet" type="text/css" href="css/content.css">
@@ -36,9 +36,11 @@ $LANG = new Language();
                     </ul>
                 </nav>
             </header>
-            <?php
-            /*
-             * Local Variables:
-             * mode: web
-             * End:
-             * End: */?>
+            <div id="main-content">
+                <h1 id="page-title"><?php echo $LANG[$PAGE_TITLE_TAG] ?></h1>
+                <?php
+                /*
+                 * Local Variables:
+                 * mode: web
+                 * End:
+                 * End: */?>
