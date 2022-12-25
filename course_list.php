@@ -7,8 +7,7 @@ require_once "fragment/header.php";
         <div>
             Add new course
         </div>
-        <div class="flex-pad">
-        </div>
+        <div class="flex-pad"></div>
         <div>
             Archive this semester
         </div>
@@ -27,7 +26,7 @@ require_once "fragment/header.php";
         <tbody>
             <tr>
                 <td class="course-name">
-                    Seminar on something something
+                    <a href="/course.php">Seminar on something something</a>
                 </td>
                 <td class="course-score">
                     90
@@ -41,7 +40,7 @@ require_once "fragment/header.php";
             </tr>
             <tr>
                 <td class="course-name">
-                    Seminar on nothing really
+                    <a href="/course.php">Seminar on nothing really</a>
                 </td>
                 <td class="course-score">
                     100
