@@ -2,10 +2,10 @@
 class Language implements ArrayAccess
 {
     private $messages = ["tag" => "en"];
-    private function define_language(array $available) : string{
+    private function define_language(array $available_langs) : string{
         if(isset($_GET['lang']) && $_GET['lang'] != ''){
             // A language change with get parameter is requested
-            if(in_array($_GET['lang'], $available_langs))
+            if(in_array(strtolower($_GET['lang']), $available_langs))
             {
                 $_SESSION['lang'] = $_GET['lang']; // Overwrite the session with supplied param
             }

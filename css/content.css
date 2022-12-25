@@ -1,0 +1,30 @@
+#main-content{
+    display:flex;
+    flex-direction:column;
+}
+
+#page-title{
+    text-align:center;
+}
+
+#page-content table {
+    width:100%;
+}
+
+#page-content th{
+    background-color: #000;
+    color: #fff;
+}
+#page-content tr:nth-child(even){
+    background-color: #d0d0d0;
+}
+
+#page-content tr:hover{
+    background-color: #9fbf9f;
+}
+#page-content>table.key-val-table tr:nth-child(even){
+    background-color: #ffffff;
+}
+#page-content>table.key-val-table tr:nth-child(odd){
+    background-color: #d0d0d0;
+}
