@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
 }
 $sqlcon = db_init();
 /* Find the largest value of the archived */
-$last_sem = $sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_all()[0][0];
+$last_sem = $sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_row()[0];
 $last_sem ??= 0;
 
 $query = "INSERT INTO course(en_name, zh_name, semester, credits, numoftest, passing)

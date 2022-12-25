@@ -1,5 +1,6 @@
 <?php
-return ["tag" => "zh-Hant"
+return ["id" => "zh"
+      , "tag" => "zh-Hant"
       , "title" => "Score Tracker"
 ];
 /*

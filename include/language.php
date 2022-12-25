@@ -1,7 +1,8 @@
 <?php
 class Language implements ArrayAccess
 {
-    private $messages = ["tag" => "en"];
+    private $messages = ["tag" => "en"
+                       , "id" => "en"];
     private function define_language(array $available_langs) : string{
         if(isset($_GET['lang']) && $_GET['lang'] != ''){
             // A language change with get parameter is requested
