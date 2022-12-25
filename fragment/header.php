@@ -41,9 +41,9 @@ function gen_language_path(string $language_tag): string{
                     </ul>
                 </nav>
             </header>
-            <div id="main-content">
-                <h1 id="page-title"><?php echo $LANG[$PAGE_TITLE_TAG] ?></h1>
-                <div id="page-content">
+            <div class="main-content">
+                <h1 class="page-title"><?php echo $LANG[$PAGE_TITLE_TAG] ?></h1>
+                <div class="page-content">
                     <?php
                     /*
                      * Local Variables:
