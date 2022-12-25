@@ -1,6 +1,8 @@
 <?php namespace header;
 $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 ?>
+<div class="body-lpad">
+</div>
 <header>
     <nav class="header-container">
         <ul>

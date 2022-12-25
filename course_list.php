@@ -13,7 +13,7 @@ $LANG = new Language();
         <?php
         require_once "fragment/header.php";
         ?>
-        <div id="main-body">
+        <div id="body-main">
             <div id="page-title">
                 <h2> Course List </h2>
             </div>
@@ -45,6 +45,9 @@ $LANG = new Language();
                     </tbody>
             </div>
         </div>
+        <?php
+        require_once "fragment/closer.php";
+        ?>
     </body>
     <?php
     /*
