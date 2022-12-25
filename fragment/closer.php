@@ -1,6 +1,8 @@
 </div>
 <div id="body-rpad">
 </div>
+    </body>
+</html>
 <?php
 /*
  * Local Variables:
