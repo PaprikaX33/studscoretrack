@@ -4,7 +4,7 @@ require_once "fragment/header.php";
 ?>
 <div class="content-block">
     <form id="new-course-form" method="POST" action="/post_test.php">
-        <input name="courseid" type="hidden" />
+        <input name="courseid" type="hidden" value="1" />
         <table class="key-val-table">
             <tbody>
                 <tr>

@@ -13,6 +13,12 @@ echo "</pre>";
     <form id="delDB" method="POST" action="/debug.php">
         <input name="act" type="hidden" value="del" />
     </form>
+    <form id="selc" method="POST" action="/debug.php">
+        <input name="act" type="hidden" value="selc" />
+    </form>
+    <form id="selt" method="POST" action="/debug.php">
+        <input name="act" type="hidden" value="selt" />
+    </form>
     <table class="key-val-table">
         <tbody>
             <tr>
@@ -25,10 +31,10 @@ echo "</pre>";
             </tr>
             <tr>
                 <td>
-
+                    <input form="selc" type="submit" value="select course"/>
                 </td>
                 <td>
-
+                    <input form="selt" type="submit" value="select test"/>
                 </td>
             </tr>
         </tbody>
@@ -36,33 +42,30 @@ echo "</pre>";
 </div>
 <div class="content-block">
     <h2> Output </div>
-        <?php
-        if($_SERVER['REQUEST_METHOD'] != 'POST'){
-            echo "ERR METHOD";
-            goto endtag;
-        }
-        require_once "include/json.php";
-        $config = load_json("config/dbconfig.json");
-        $sqlcon = new mysqli((($config["connection"]["host"] ?? "localhost") . ":"
-                            . (strval($config["connection"]["port"]) ?? "3306"))
-                           , ($config["account"]["user"] ?? "root")
-                           , ($config["account"]["pass"] ?? "")
-                           , $config["name"]);
-        try{
-            switch($_POST["act"]){
-                case "gen":
-                    echo $sqlcon->query("CREATE TABLE course (
-courseID INT NOT NULL,
+        <pre>
+            <?php
+            if($_SERVER['REQUEST_METHOD'] != 'POST'){
+                echo "ERR METHOD";
+                goto endtag;
+            }
+            require_once "include/db_con.php";
+            $sqlcon = db_init();
+            try{
+                switch($_POST["act"]){
+                    case "gen":
+                        echo $sqlcon->query("CREATE TABLE course (
+courseID INT NOT NULL AUTO_INCREMENT,
 en_name VARCHAR(50),
 zh_name VARCHAR(50),
 semester INT NOT NULL,
-credits INT DEFAULT 3,
-passing INT DEFAULT 60,
+numoftest INT NOT NULL DEFAULT 2,
+credits INT NOT NULL DEFAULT 3,
+passing INT NOT NULL DEFAULT 60,
 archived BOOL NOT NULL DEFAULT FALSE,
 PRIMARY KEY (courseID)
 );");
-                    echo $sqlcon->query("CREATE TABLE score (
-scoreID INT NOT NULL,
+                        echo $sqlcon->query("CREATE TABLE test (
+scoreID INT NOT NULL AUTO_INCREMENT,
 courseID INT NOT NULL,
 name VARCHAR(50),
 score INT NOT NULL,
@@ -70,24 +73,36 @@ weight INT NOT NULL,
 PRIMARY KEY (scoreID),
 FOREIGN KEY (courseID) REFERENCES course(courseID)
 );");
-                    break;
-                case "del":
-                    echo $sqlcon->query("DROP TABLE IF EXISTS score, course;");
-                    break;
-                default: break;
+                        break;
+                    case "del":
+                        echo $sqlcon->query("DROP TABLE IF EXISTS test, course;");
+                        break;
+                    case "selt":
+                        var_dump($sqlcon->query("SELECT * FROM test;")->fetch_all());
+                        break;
+                    case "selc":
+                        var_dump($sqlcon->query("SELECT * FROM course;")->fetch_all());
+                        break;
+                    default: break;
+                }
             }
-        }
-        catch(mysqli_sql_exception $e){
-            echo $e;
-        }
+            catch(mysqli_sql_exception $e){
+                echo $e;
+            }
 
-        $sqlcon->close();
-        endtag:?>
+            $sqlcon->close();
+            endtag:?>
+        </pre>
 </div>
-<?php
-require_once "fragment/closer.php";
-/*
- * Local Variables:
- * mode: web
- * End:
- * End: */?>
+<div class="content-block">
+    <?php
+    phpinfo(INFO_GENERAL);
+    ?>
+</div>
+    <?php
+    require_once "fragment/closer.php";
+    /*
+     * Local Variables:
+     * mode: web
+     * End:
+     * End: */?>
