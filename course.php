@@ -1,5 +1,5 @@
 <?php
-$PAGE_TITLE_TAG = "page-course-title";
+$PAGE_TITLE_TAG = "page-course-data-title";
 require_once "fragment/header.php";
 ?>
 <div class="content-block">

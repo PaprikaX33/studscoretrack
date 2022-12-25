@@ -14,3 +14,6 @@ New language can be added by adding a translated file in `language/` directory n
 Add the language `<tag>` to the array in the function `config_language()` in file `include/language.php`
 
 See `language/lang_en.php` for translation reference.
+
+## CSRF
+No csrf protection is implemented.
