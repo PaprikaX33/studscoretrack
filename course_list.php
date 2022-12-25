@@ -5,7 +5,7 @@ require_once "fragment/header.php";
 <div class="content-block">
     <div class="control-block">
         <div>
-            Add new course
+            <a href="/new_course.php">Add new course</a>
         </div>
         <div class="flex-pad"></div>
         <div>
