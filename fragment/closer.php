@@ -1,5 +1,5 @@
 </div>
-<div class="body-rpad">
+<div id="body-rpad">
 </div>
 <?php
 /*

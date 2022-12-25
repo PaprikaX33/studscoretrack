@@ -1,15 +1,13 @@
-body{
-    margin:0;
-}
-.header-container{
-    position: fixed;
-    top: 0;
-    text-align: center;
-    height: 3em;
+header {
     width: 100%;
 }
+#header-container{
+    text-align: center;
+    height: 3em;
+    width: 1000px;
+}
 
-.header-container a {
+#header-container a {
     display: flex;
     justify-content: center; /* Align horizontal */
     align-items: center; /* Align vertical */
@@ -21,21 +19,19 @@ body{
     height: 100%;
 }
 
-.header-container a:hover {
-    background-color: #9faf9f;
+#header-container a:hover {
+    background-color: #9fbf9f;
 }
 
-.header-container li{
+#header-container li{
     float: left;
     height: 100%;
     border-right: 1px solid #000;
 }
 
-.header-container li:last-child {
-    border-right: none;
-}
-
-.header-container ul{
+#header-container ul{
+    display: flex;
+    flex-direction:row;
     background-color: #cfcfcf;
     list-style-type: none;
     margin: 0;
@@ -44,24 +40,28 @@ body{
     height: 100%;
 }
 
-.header-container li.header-lang{
+#header-container li#header-lang{
     float: right;
     height: 100%;
 }
 
-.header-lang div{
+#header-lang div{
     text-align: center;
     float: left;
     height: 100%;
 }
 
-.header-lang div {
+#header-lang div {
     border-right: 1px solid #000;
 }
-.header-lang div:last-child {
+
+#header-mid-pad {
+    flex:auto;
+}
+#header-lang div:last-child, #header-container li:last-child, #header-container li#header-mid-pad {
     border-right: none;
 }
 
-.header-lang div a {
+#header-lang div a {
     padding: 0 0.5em;
 }

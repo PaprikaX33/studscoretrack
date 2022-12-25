@@ -8,6 +8,8 @@ $LANG = new Language();
     <head>
         <title>Score Tracker</title>
         <link rel="stylesheet" type="text/css" href="css/heading.css">
+        <link rel="stylesheet" type="text/css" href="css/padding.css">
+        <link rel="stylesheet" type="text/css" href="css/content.css">
     </head>
     <body>
         <?php

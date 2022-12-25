@@ -1,16 +1,17 @@
 <?php namespace header;
 $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 ?>
-<div class="body-lpad">
+<div id="body-lpad">
 </div>
 <div id="body-main">
     <header>
-        <nav class="header-container">
+        <nav id="header-container">
             <ul>
                 <li><a href="/">ScoreTracker</a></li>
                 <li><a href="/">Archived</a></li>
                 <li><a href="/">Summary</a></li>
-                <li class="header-lang">
+                <li id="header-mid-pad"></li>
+                <li id="header-lang">
                     <div>
                         <a href="<?php echo $currentPath ?>?lang=en">EN</a>
                     </div>
