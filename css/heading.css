@@ -6,16 +6,17 @@ header {
     height: 3em;
     width: 1000px;
 }
-
+a {
+    text-decoration: none;
+    color: black;
+}
 #header-container a {
     display: flex;
     justify-content: center; /* Align horizontal */
     align-items: center; /* Align vertical */
     padding: 0em 1.5em;
-    text-decoration: none;
     text-align: center;
     margin: 0;
-    color: black;
     height: 100%;
 }
 

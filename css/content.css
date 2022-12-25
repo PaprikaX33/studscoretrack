@@ -3,28 +3,53 @@
     flex-direction:column;
 }
 
-#page-title{
+.page-title{
     text-align:center;
 }
 
-#page-content table {
+.page-content table {
     width:100%;
 }
 
-#page-content th{
+.page-content div{
+    width:100%;
+}
+
+.page-content th{
     background-color: #000;
     color: #fff;
 }
-#page-content tr:nth-child(even){
+.page-content tr:nth-child(even){
     background-color: #d0d0d0;
 }
 
-#page-content tr:hover{
+.page-content tr:hover{
     background-color: #9fbf9f;
 }
-#page-content>table.key-val-table tr:nth-child(even){
+
+.page-content table.key-val-table td{
+    width:50%;
+}
+.page-content table.key-val-table tr:nth-child(even){
     background-color: #ffffff;
 }
-#page-content>table.key-val-table tr:nth-child(odd){
+.page-content table.key-val-table tr:nth-child(odd){
     background-color: #d0d0d0;
+}
+
+.content-block{
+    width:100%;
+    padding: 0 0;
+}
+
+.control-block{
+    width:100%;
+    display:flex;
+    flex-direction:row;
+}
+.control-block div{
+    width:max-content;
+}
+.flex-pad{
+    flex:auto;
 }
