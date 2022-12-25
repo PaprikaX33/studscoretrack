@@ -8,42 +8,52 @@ require_once "fragment/header.php";
             <tbody>
                 <tr>
                     <td>
-                        Course English Name
+                        <label for="cename">
+                            Course English Name
+                        </label>
                     </td>
                     <td>
-                        <input name="ename" type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Course Chinese name
-                    </td>
-                    <td>
-                        <input name="cname" type="text" />
+                        <input id="cename" name="ename" type="text" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Course Credits
+                        <label for="ccname">
+                            Course Chinese name
+                        </label>
                     </td>
                     <td>
-                        <input name="credit" type="text" inputmode="numeric" pattern="\d*" required />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Number of test
-                    </td>
-                    <td>
-                        <input name="test" type="text" inputmode="numeric" pattern="\d*" />
+                        <input id="ccname" name="cname" type="text" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Passing grade
+                        <label for="cred">
+                            Course Credits
+                        </label>
                     </td>
                     <td>
-                        <input name="grade" type="text" inputmode="numeric" pattern="\d*" />
+                        <input id="cred" name="credit" type="text" inputmode="numeric" pattern="\d*" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="count">
+                            Number of test
+                        </label>
+                    </td>
+                    <td>
+                        <input id="count" name="test" type="text" inputmode="numeric" pattern="\d*" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cgr">
+                            Passing grade
+                        </label>
+                    </td>
+                    <td>
+                        <input id="cgr" name="grade" type="text" inputmode="numeric" pattern="\d*" />
                     </td>
                 </tr>
                 <tr>
