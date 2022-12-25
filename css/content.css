@@ -19,9 +19,12 @@
     background-color: #d0d0d0;
 }
 
-#page-content>table.flip-row-highlight tr:nth-child(even){
+#page-content tr:hover{
+    background-color: #9fbf9f;
+}
+#page-content>table.key-val-table tr:nth-child(even){
     background-color: #ffffff;
 }
-#page-content>table.flip-row-highlight tr:nth-child(odd){
+#page-content>table.key-val-table tr:nth-child(odd){
     background-color: #d0d0d0;
 }

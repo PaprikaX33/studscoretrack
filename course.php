@@ -1,5 +1,5 @@
 <?php
-$PAGE_TITLE_TAG = "page-summary-title";
+$PAGE_TITLE_TAG = "page-course-title";
 require_once "fragment/header.php";
 ?>
 <table class="key-val-table">
