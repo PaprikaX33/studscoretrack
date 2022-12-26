@@ -28,19 +28,17 @@ require_once "fragment/header.php";
             <?php
             $sqlcon = db_init();
             $lang_name = "en_name";
-            switch($LANG["id"]){
-                case "zh":
-                    $lang_name = "zh_name";
-                    break;
-                default: break;
+            if($LANG["id"] == "zh"){
+                $lang_name = "zh_name";
             }
             $query = "SELECT courseID AS id, "
                     .$lang_name." AS name, passing "
                     ."FROM course WHERE archived=FALSE ORDER BY semester DESC";
             $res = $sqlcon->query($query);
             while($row = $res->fetch_assoc()){
-                $score = $sqlcon->query("SELECT CAST(SUM(score * weight) AS DECIMAL) / "
-                                       ."CAST(SUM(weight) AS DECIMAL) AS avgs, "
+                $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
+                                       ."CAST(SUM(score * weight) AS DECIMAL) / "
+                                       ."CAST(SUM(weight) AS DECIMAL) END AS avgs, "
                                        ."SUM(weight) AS weight, SUM(score * weight) AS score "
                                        ."FROM test WHERE courseID=".$row["id"])->fetch_assoc();
                 if($score["weight"] > 100){
@@ -65,7 +63,7 @@ require_once "fragment/header.php";
                     %s
                 </td>
             </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"]), $score["avgs"], $max,
-                ($passability ? "Passable" : "Not-Passable"));
+                       ($passability ? "Passable" : "Not-Passable"));
             }
             $sqlcon->close();
             ?>
