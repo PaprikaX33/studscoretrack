@@ -8,9 +8,7 @@ require_once "fragment/header.php";
             <tbody>
                 <tr>
                     <td>
-                        <label for="cename">
-                            Course English Name
-                        </label>
+                        <label for="cename"><?php echo $LANG["nc-en-name"]; ?></label>
                     </td>
                     <td>
                         <input id="cename" name="ename" type="text" />
@@ -18,9 +16,7 @@ require_once "fragment/header.php";
                 </tr>
                 <tr>
                     <td>
-                        <label for="ccname">
-                            Course Chinese name
-                        </label>
+                        <label for="ccname"><?php echo $LANG["nc-zh-name"]; ?></label>
                     </td>
                     <td>
                         <input id="ccname" name="cname" type="text" />
@@ -28,9 +24,7 @@ require_once "fragment/header.php";
                 </tr>
                 <tr>
                     <td>
-                        <label for="cred">
-                            Course Credits
-                        </label>
+                        <label for="cred"><?php echo $LANG["nc-cred"]; ?></label>
                     </td>
                     <td>
                         <input id="cred" name="credit" type="text"
@@ -40,18 +34,17 @@ require_once "fragment/header.php";
                 </tr>
                 <tr>
                     <td>
-                        <label for="cgr">
-                            Passing grade
-                        </label>
+                        <label for="cgr"><?php echo $LANG["nc-passing"]; ?></label>
                     </td>
                     <td>
-                        <input id="cgr" name="grade" type="text" inputmode="numeric" pattern="\d*" />
+                        <input id="cgr" name="grade" type="text"
+                               inputmode="numeric" pattern="\d*" />
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                        <input type="submit" value="Add New Course" />
+                        <input type="submit" value="<?php echo $LANG["nc-but-submit"]; ?>" />
                     </td>
                 </tr>
             </tbody>

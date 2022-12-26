@@ -5,6 +5,7 @@ return ["id" => "en"
       , "page-course-title" => "Course List"
       , "page-archive-title" => "Archived Courses"
       , "page-course-data-title" => "Course"
+      , "page-new-course-title" => "New Course"
 
       , "list-new" => "Add new Course"
       , "list-current-sem" => "Current Semester"
@@ -35,7 +36,11 @@ return ["id" => "en"
       , "cour-res-scr" => "Score"
       , "cour-res-wgh" => "Weight"
 
-
+      , "nc-en-name" => "Course English Name"
+      , "nc-zh-name" => "Course Chinese Name"
+      , "nc-cred" => "Course Credit"
+      , "nc-passing" => "Minimum Passing Grade"
+      , "nc-but-submit" => "Add New Course"
 ];
 /*
  * Local Variables:

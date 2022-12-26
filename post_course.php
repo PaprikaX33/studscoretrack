@@ -13,10 +13,10 @@ $last_sem ??= 0;
 $query = "INSERT INTO course(en_name, zh_name, semester, credit, passing)
 VALUES (?, ?, ?, ?, ?);";
 $stmt = $sqlcon->prepare($query);
-$ename = $_POST["ename"];
-$cname = $_POST["cname"];
+$ename = $_POST["ename"] == '' ? NULL : $_POST["ename"];
+$cname = $_POST["cname"] == '' ? NULL : $_POST["cname"];
 $credit = $_POST["credit"];
-$grade = $_POST["grade"];
+$grade = $_POST["grade"]  == '' ? 60 : $_POST["grade"];
 
 $stmt->bind_param("ssiii", ...[$ename, $cname, $last_sem + 1, $credit, $grade]);
 $stmt->execute();

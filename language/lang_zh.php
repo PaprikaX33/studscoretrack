@@ -5,6 +5,7 @@ return ["id" => "zh"
       , "page-course-title" => "課程列表"
       , "page-archive-title" => "存檔課程"
       , "page-course-data-title" => "課程"
+      , "page-new-course-title" => "新課程"
 
       , "list-new" => "添加新課程"
       , "list-current-sem" => "本學期"
@@ -34,6 +35,12 @@ return ["id" => "zh"
       , "cour-res-tit" => "考試題目"
       , "cour-res-scr" => "分數"
       , "cour-res-wgh" => "重量??????"
+
+      , "nc-en-name" => "課程英文名稱"
+      , "nc-zh-name" => "課程中文名稱"
+      , "nc-cred" => "課程學分"
+      , "nc-passing" => "最低及格分數"
+      , "nc-but-submit" => "添加新課程"
 ];
 /*
  * Local Variables:
