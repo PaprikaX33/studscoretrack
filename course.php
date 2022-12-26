@@ -12,18 +12,11 @@ if($_GET["id"] > $maxcourse){
     header('Location: /course_list.php');
     die();
 }
-$query = "SELECT en_name, zh_name, credit, semester, passing, archived
+$query = "SELECT en_name, zh_name, credit, semester, passing, archived,
+(SELECT SUM(score * weight) FROM test WHERE courseID=course.id) as score,
+(SELECT SUM(weight) FROM test WHERE courseID=course.id) as weight
  FROM course WHERE id=".(string)$_GET["id"];
 $res = $sqlcon->query($query)->fetch_assoc();
-$score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
-                       ."CAST(SUM(score * weight) AS DECIMAL) / "
-                       ."CAST(SUM(weight) AS DECIMAL) END AS avgs, "
-                       ."SUM(weight) AS weight, SUM(score * weight) AS score, "
-                       ."ROUND(CASE WHEN SUM(weight)>=100 THEN 0 ELSE "
-                       ."(CAST(SUM(score * weight) AS DECIMAL) "
-                       ."+100.0*(100.0 - CAST(SUM(weight) AS DECIMAL))) "
-                       ." / 100.0 END, 2) AS maxsc "
-                       ."FROM test WHERE courseID=".(string)$_GET["id"])->fetch_assoc();
 ?>
 <div class="content-block">
     <table class="key-val-table">
@@ -44,7 +37,14 @@ $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
                 <td>
                     Average Entered Score
                 </td>
-                <td><?php echo $score["avgs"]; ?></td>
+                <td><?php
+                    if($res["weight"] == 0){
+                        echo 0;
+                    }
+                    else {
+                        echo (float)$res["score"] / (float)$res["weight"];
+                    } ?>
+                </td>
             </tr>
             <tr>
                 <?php
@@ -58,9 +58,15 @@ $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
                 echo "</td>";
                 echo "<td>";
                 if(!$res["archived"]){
-                    echo $score["maxsc"];
+                    if($res["weight"] >= 100){
+                        echo $maxc = 0;
+                    }
+                    else {
+                        echo ($res["score"] + (100.0 * (float)(100 - $res["weight"]))) / 100.0;
+                    }
                 }
                 else {
+                    echo (float)$res["score"] / 100.0;
                 }
                 echo "</td>";
                 ?>
