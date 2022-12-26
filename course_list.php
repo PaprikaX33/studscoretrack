@@ -35,24 +35,37 @@ require_once "fragment/header.php";
                 default: break;
             }
             $query = "SELECT courseID AS id, "
-                    .$lang_name." AS name FROM course WHERE archived=FALSE";
+                    .$lang_name." AS name, passing "
+                    ."FROM course WHERE archived=FALSE ORDER BY semester DESC";
             $res = $sqlcon->query($query);
             while($row = $res->fetch_assoc()){
+                $score = $sqlcon->query("SELECT CAST(SUM(score * weight) AS DECIMAL) / "
+                                       ."CAST(SUM(weight) AS DECIMAL) AS avgs, "
+                                       ."SUM(weight) AS weight, SUM(score * weight) AS score "
+                                       ."FROM test WHERE courseID=".$row["id"])->fetch_assoc();
+                if($score["weight"] > 100){
+                    /* Special Computation */
+                    $max = 0;
+                    $passability = $score["avgs"] >= $row["passing"];
+                }
+                else {
+                    $max = ($score["score"] + 100.0 * (100 - $score["weight"])) / 100;
+                }
                 printf("<tr onclick=\"window.location='/course.php?id=%d';\">
                 <td class=\"course-name\">
                     %s
                 </td>
                 <td class=\"course-score\">
-                    90
+                    %d
                 </td>
                 <td class=\"course-max\">
-                    100
+                    %d
                 </td>
                 <td class=\"course-pass\">
-                    Passable
+                    %s
                 </td>
-            </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"]));
-                //printf("%s (%s)\n", $row["Name"], $row["CountryCode"]);
+            </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"]), $score["avgs"], $max,
+                ($passability ? "Passable" : "Not-Passable"));
             }
             $sqlcon->close();
             ?>

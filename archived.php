@@ -31,7 +31,7 @@ require_once "fragment/header.php";
                     %s
                 </td>
                 <td class=\"course-score\">
-                    90
+                    TODO
                 </td>
                 <td class=\"course-credit\">
                     %d
