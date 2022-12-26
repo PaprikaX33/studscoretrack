@@ -14,6 +14,11 @@ return ["id" => "zh"
       , "list-header-pass" => "能夠通過"
       , "list-pass-pos" => "可能的"
       , "list-pass-neg" => "不可能的"
+
+      , "arch-header-title" => "課程名"
+      , "arch-header-score" => "分數"
+      , "arch-header-cred" => "信用"
+      , "arch-header-sem" => "學期"
 ];
 /*
  * Local Variables:

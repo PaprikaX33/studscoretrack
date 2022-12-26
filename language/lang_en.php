@@ -14,6 +14,11 @@ return ["id" => "en"
       , "list-header-pass" => "Passable"
       , "list-pass-pos" => "Passable"
       , "list-pass-neg" => "Not Passable"
+
+      , "arch-header-title" => "Course Title"
+      , "arch-header-score" => "Score"
+      , "arch-header-cred" => "Credit"
+      , "arch-header-sem" => "Semester"
 ];
 /*
  * Local Variables:

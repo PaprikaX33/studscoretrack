@@ -6,10 +6,10 @@ require_once "fragment/header.php";
 <table>
     <thead>
         <tr>
-            <th>Course Title</th>
-            <th>Score</th>
-            <th>Credit</th>
-            <th>Semester</th>
+            <th><?php echo $LANG["arch-header-title"]; ?></th>
+            <th><?php echo $LANG["arch-header-score"]; ?></th>
+            <th><?php echo $LANG["arch-header-cred"]; ?></th>
+            <th><?php echo $LANG["arch-header-sem"]; ?></th>
         </tr>
     </thead>
     <tbody>
