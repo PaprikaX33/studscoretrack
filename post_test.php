@@ -19,9 +19,8 @@ $stmt = $sqlcon->prepare($query);
 
 $stmt->bind_param("isii", ...[$cid, $name, $score, $weight]);
 $stmt->execute();
-$courseid = $sqlcon->query("SELECT MAX(testID) FROM test;")->fetch_row()[0];
 $sqlcon->close();
-header('Location: /course.php?id='.(string)$courseid);
+header('Location: /course.php?id='.(string)$cid);
 die();
 /*
  * Local Variables:

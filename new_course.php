@@ -43,7 +43,7 @@ require_once "fragment/header.php";
                         </label>
                     </td>
                     <td>
-                        <input id="count" name="test" type="text" inputmode="numeric" pattern="\d*" />
+                        <input id="count" name="test" type="text" inputmode="numeric" pattern="\d*" value="0" />
                     </td>
                 </tr>
                 <tr>
