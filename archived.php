@@ -22,15 +22,24 @@ require_once "fragment/header.php";
                 break;
             default: break;
         }
-        $query = "SELECT courseID AS id, "
-                .$lang_name." AS name, credit, semester FROM course WHERE archived=TRUE";
+        $query = "SELECT id, "
+                .$lang_name." AS name, credit, semester,
+(SELECT SUM(score * weight) FROM test WHERE courseID=course.id) as score,
+(SELECT SUM(weight) FROM test WHERE courseID=course.id) as weight
+ FROM course WHERE archived=TRUE";
         $res = $sqlcon->query($query);
         while($row = $res->fetch_assoc()){
-            $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
-                                   ."CAST(SUM(score * weight) AS DECIMAL) / "
-                                   ."CAST(SUM(weight) AS DECIMAL) END AS avgs "
-                                   ."FROM test WHERE courseID=".$row["id"])->fetch_assoc();
-            printf("<tr onclick=\"window.location='/course.php?id=%d';\">
+            if($row["weight"] == 0){
+                $avg = 0;
+            }
+            else {
+                $avg = (float)$row["score"] / (float)$row["weight"];
+            }
+            /* $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
+             *                        ."CAST(SUM(score * weight) AS DECIMAL) / "
+             *                        ."CAST(SUM(weight) AS DECIMAL) END AS avgs "
+             *                        ."FROM test WHERE courseID=".$row["id"])->fetch_assoc(); */
+            Printf("<tr onclick=\"window.location='/course.php?id=%d';\">
                 <td class=\"course-name\">
                     %s
                 </td>
@@ -43,7 +52,8 @@ require_once "fragment/header.php";
                 <td class=\"course-semester\">
                     %d
                 </td>
-            </tr>", $row["id"], $row["name"], $score["avgs"], $row["credit"], $row["semester"]);
+            </tr>", $row["id"], $row["name"]
+                 , $avg, $row["credit"], $row["semester"]);
         }
         $sqlcon->close();
         ?>

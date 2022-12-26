@@ -9,7 +9,7 @@ $cid = $_POST["courseid"];
 $name = $_POST["name"];
 $weight = $_POST["weight"];
 $score = $_POST["score"] == '' ? 0 : $_POST["score"];
-$maxcourse = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
+$maxcourse = $sqlcon->query("SELECT MAX(id) FROM course;")->fetch_row()[0];
 if($cid > $maxcourse){
     header('Location: /course_list.php');
 }

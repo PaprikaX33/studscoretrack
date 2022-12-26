@@ -2,6 +2,7 @@
 $PAGE_TITLE_TAG = "page-course-title";
 require_once "include/db_con.php";
 require_once "fragment/header.php";
+$sqlcon = db_init();
 ?>
 <div class="content-block">
     <div class="control-block">
@@ -9,8 +10,12 @@ require_once "fragment/header.php";
             <a href="/new_course.php">Add new course</a>
         </div>
         <div class="flex-pad"></div>
+        <div>Current Semester :
+            <?php echo $sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_row()[0]; ?>
+        </div>
+        <div class="flex-pad"></div>
         <div>
-            Archive this semester
+            <a href="/semester_archive.php">Archive this semester</a>
         </div>
     </div>
 </div>
@@ -26,30 +31,30 @@ require_once "fragment/header.php";
         </thead>
         <tbody>
             <?php
-            $sqlcon = db_init();
             $lang_name = "en_name";
             if($LANG["id"] == "zh"){
                 $lang_name = "zh_name";
             }
-            $query = "SELECT courseID AS id, "
-                    .$lang_name." AS name, passing "
-                    ."FROM course WHERE archived=FALSE ORDER BY semester DESC";
+            $query = "SELECT id, "
+                    .$lang_name." AS name, passing,
+(SELECT SUM(score * weight) FROM test WHERE courseID=course.id) as score,
+(SELECT SUM(weight) FROM test WHERE courseID=course.id) as weight
+ FROM course WHERE archived=FALSE ORDER BY semester DESC";
             $res = $sqlcon->query($query);
             while($row = $res->fetch_assoc()){
-                $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
-                                       ."CAST(SUM(score * weight) AS DECIMAL) / "
-                                       ."CAST(SUM(weight) AS DECIMAL) END AS avgs, "
-                                       ."SUM(weight) AS weight, SUM(score * weight) AS score, "
-                                       ."ROUND(CASE WHEN SUM(weight)>=100 THEN 0 ELSE "
-                                       ."(CAST(SUM(score * weight) AS DECIMAL) "
-                                       ."+100.0*(100.0 - CAST(SUM(weight) AS DECIMAL))) "
-                                       ." / 100.0 END, 2) AS maxsc "
-                                       ."FROM test WHERE courseID=".$row["id"])->fetch_assoc();
-                if($score["weight"] > 100){
-                    $passability = $score["avgs"] >= $row["passing"];
+                if($row["weight"] == 0){
+                    $avg = 0;
                 }
                 else {
-                    $passablity = $score["maxsc"] >= $row["passing"];
+                    $avg = (float)$row["score"] / (float)$row["weight"];
+                }
+                if($row["weight"] >= 100){
+                    $maxc = 0;
+                    $passability = $avg >= $row["passing"];
+                }
+                else {
+                    $maxc = ($row["score"] + (100.0 * (float)(100 - $row["weight"]))) / 100.0;
+                    $passability = $maxc >= $row["passing"];
                 }
                 printf("<tr onclick=\"window.location='/course.php?id=%d';\">
                 <td class=\"course-name\">
@@ -64,8 +69,9 @@ require_once "fragment/header.php";
                 <td class=\"course-pass\">
                     %s
                 </td>
-            </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"]), $score["avgs"], $score["maxsc"],
-                       ($passability ? "Passable" : "Not-Passable"));
+            </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"])
+                     , $avg, $maxc
+                     , ($passability ? "Passable" : "Not-Passable"));
             }
             $sqlcon->close();
             ?>

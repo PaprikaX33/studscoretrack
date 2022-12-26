@@ -7,23 +7,16 @@ $PAGE_TITLE_TAG = "page-course-data-title";
 require_once "include/db_con.php";
 require_once "fragment/header.php";
 $sqlcon = db_init();
-$maxcourse = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
+$maxcourse = $sqlcon->query("SELECT MAX(id) FROM course;")->fetch_row()[0];
 if($_GET["id"] > $maxcourse){
     header('Location: /course_list.php');
     die();
 }
-$query = "SELECT en_name, zh_name, credit, semester, passing, archived
- FROM course WHERE courseID=".(string)$_GET["id"];
+$query = "SELECT en_name, zh_name, credit, semester, passing, archived,
+(SELECT SUM(score * weight) FROM test WHERE courseID=course.id) as score,
+(SELECT SUM(weight) FROM test WHERE courseID=course.id) as weight
+ FROM course WHERE id=".(string)$_GET["id"];
 $res = $sqlcon->query($query)->fetch_assoc();
-$score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
-                       ."CAST(SUM(score * weight) AS DECIMAL) / "
-                       ."CAST(SUM(weight) AS DECIMAL) END AS avgs, "
-                       ."SUM(weight) AS weight, SUM(score * weight) AS score, "
-                       ."ROUND(CASE WHEN SUM(weight)>=100 THEN 0 ELSE "
-                       ."(CAST(SUM(score * weight) AS DECIMAL) "
-                       ."+100.0*(100.0 - CAST(SUM(weight) AS DECIMAL))) "
-                       ." / 100.0 END, 2) AS maxsc "
-                       ."FROM test WHERE courseID=".(string)$_GET["id"])->fetch_assoc();
 ?>
 <div class="content-block">
     <table class="key-val-table">
@@ -42,15 +35,41 @@ $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
             </tr>
             <tr>
                 <td>
-                    Current Average Score
+                    Average Entered Score
                 </td>
-                <td><?php echo $score["avgs"]; ?></td>
+                <td><?php
+                    if($res["weight"] == 0){
+                        echo 0;
+                    }
+                    else {
+                        echo (float)$res["score"] / (float)$res["weight"];
+                    } ?>
+                </td>
             </tr>
             <tr>
-                <td>
-                    Maximum Possible Score
-                </td>
-                <td><?php echo $score["maxsc"]; ?></td>
+                <?php
+                echo "<td>";
+                if(!$res["archived"]){
+                    echo "Maximum Possible Score";
+                }
+                else {
+                    echo "Course Score";
+                }
+                echo "</td>";
+                echo "<td>";
+                if(!$res["archived"]){
+                    if($res["weight"] >= 100){
+                        echo $maxc = 0;
+                    }
+                    else {
+                        echo ($res["score"] + (100.0 * (float)(100 - $res["weight"]))) / 100.0;
+                    }
+                }
+                else {
+                    echo (float)$res["score"] / 100.0;
+                }
+                echo "</td>";
+                ?>
             </tr>
             <tr>
                 <td>
@@ -75,7 +94,7 @@ $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
 </div>
 <div class="content-block">
     <h2>Test Results</h2><?php
-                         if (!$res["archived"]){
+                         if(!$res["archived"]){
                              printf("<div class=\"control-block\">"
                                    ."<a href=\"/new_test.php?cid=%d\">Add new test result</a>"
                                    ."</div>", $_GET['id']);
@@ -93,7 +112,7 @@ $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
         </thead>
         <tbody>
             <?php
-            $testquery = "SELECT testID AS id, name, score, weight "
+            $testquery = "SELECT id, name, score, weight "
                         ."FROM test WHERE courseID=".(string)$_GET['id'];
             $testres = $sqlcon->query($testquery);
             while($trow = $testres->fetch_assoc()){
