@@ -5,10 +5,14 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
     die();
 }
 $sqlcon = db_init();
+if($_POST["courseid"] == '' || $_POST["weight"] == '' || $_POST["score"] == ''){
+    header('Location: /course_list.php');
+    die();
+}
 $cid = $_POST["courseid"];
-$name = $_POST["name"];
+$name = $_POST["name"] == '' ? NULL : $_POST["name"];
 $weight = $_POST["weight"];
-$score = $_POST["score"] == '' ? 0 : $_POST["score"];
+$score = $_POST["score"];
 $maxcourse = $sqlcon->query("SELECT MAX(id) FROM course;")->fetch_row()[0];
 if($cid > $maxcourse){
     header('Location: /course_list.php');
