@@ -25,13 +25,17 @@ require_once "fragment/header.php";
         $query = "SELECT courseID AS id, "
                 .$lang_name." AS name, credit, semester FROM course WHERE archived=TRUE";
         $res = $sqlcon->query($query);
-        while ($row = $res->fetch_assoc()) {
+        while($row = $res->fetch_assoc()){
+            $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
+                                   ."CAST(SUM(score * weight) AS DECIMAL) / "
+                                   ."CAST(SUM(weight) AS DECIMAL) END AS avgs "
+                                   ."FROM test WHERE courseID=".$row["id"])->fetch_assoc();
             printf("<tr onclick=\"window.location='/course.php?id=%d';\">
                 <td class=\"course-name\">
                     %s
                 </td>
                 <td class=\"course-score\">
-                    90
+                    %d
                 </td>
                 <td class=\"course-credit\">
                     %d
@@ -39,7 +43,7 @@ require_once "fragment/header.php";
                 <td class=\"course-semester\">
                     %d
                 </td>
-            </tr>", $row["id"], $row["name"], $row["credit"], $row["semester"]);
+            </tr>", $row["id"], $row["name"], $score["avgs"], $row["credit"], $row["semester"]);
         }
         $sqlcon->close();
         ?>

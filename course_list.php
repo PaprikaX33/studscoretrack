@@ -28,31 +28,44 @@ require_once "fragment/header.php";
             <?php
             $sqlcon = db_init();
             $lang_name = "en_name";
-            switch($LANG["id"]){
-                case "zh":
-                    $lang_name = "zh_name";
-                    break;
-                default: break;
+            if($LANG["id"] == "zh"){
+                $lang_name = "zh_name";
             }
             $query = "SELECT courseID AS id, "
-                    .$lang_name." AS name FROM course WHERE archived=FALSE";
+                    .$lang_name." AS name, passing "
+                    ."FROM course WHERE archived=FALSE ORDER BY semester DESC";
             $res = $sqlcon->query($query);
             while($row = $res->fetch_assoc()){
+                $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
+                                       ."CAST(SUM(score * weight) AS DECIMAL) / "
+                                       ."CAST(SUM(weight) AS DECIMAL) END AS avgs, "
+                                       ."SUM(weight) AS weight, SUM(score * weight) AS score, "
+                                       ."ROUND(CASE WHEN SUM(weight)>=100 THEN 0 ELSE "
+                                       ."(CAST(SUM(score * weight) AS DECIMAL) "
+                                       ."+100.0*(100.0 - CAST(SUM(weight) AS DECIMAL))) "
+                                       ." / 100.0 END, 2) AS maxsc "
+                                       ."FROM test WHERE courseID=".$row["id"])->fetch_assoc();
+                if($score["weight"] > 100){
+                    $passability = $score["avgs"] >= $row["passing"];
+                }
+                else {
+                    $passablity = $score["maxsc"] >= $row["passing"];
+                }
                 printf("<tr onclick=\"window.location='/course.php?id=%d';\">
                 <td class=\"course-name\">
                     %s
                 </td>
                 <td class=\"course-score\">
-                    90
+                    %d
                 </td>
                 <td class=\"course-max\">
-                    100
+                    %d
                 </td>
                 <td class=\"course-pass\">
-                    Passable
+                    %s
                 </td>
-            </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"]));
-                //printf("%s (%s)\n", $row["Name"], $row["CountryCode"]);
+            </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"]), $score["avgs"], $score["maxsc"],
+                       ($passability ? "Passable" : "Not-Passable"));
             }
             $sqlcon->close();
             ?>

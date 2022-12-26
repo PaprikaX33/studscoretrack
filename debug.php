@@ -101,8 +101,13 @@ FOREIGN KEY (courseID) REFERENCES course(courseID)
                         var_dump($sqlcon->query("SELECT * FROM test")->fetch_assoc());
                         break;
                     case "custb":
-                        var_dump($sqlcon->query("SELECT en_name, zh_name, credit, semester, numoftest, passing
- FROM course WHERE courseID=7")->fetch_assoc());
+                        $res = $sqlcon->query("SELECT CAST(SUM(score * weight) AS DECIMAL) / "
+                                             ."CAST(SUM(weight) AS DECIMAL) AS avgs, "
+                                             ."SUM(weight) as weight"
+                                             ."FROM test WHERE courseID=3");
+                        while($row = $res->fetch_assoc()){
+                            var_dump($row);
+                        }
                         break;
                     default: break;
                 }

@@ -15,6 +15,15 @@ if($_GET["id"] > $maxcourse){
 $query = "SELECT en_name, zh_name, credit, semester, passing, archived
  FROM course WHERE courseID=".(string)$_GET["id"];
 $res = $sqlcon->query($query)->fetch_assoc();
+$score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
+                       ."CAST(SUM(score * weight) AS DECIMAL) / "
+                       ."CAST(SUM(weight) AS DECIMAL) END AS avgs, "
+                       ."SUM(weight) AS weight, SUM(score * weight) AS score, "
+                       ."ROUND(CASE WHEN SUM(weight)>=100 THEN 0 ELSE "
+                       ."(CAST(SUM(score * weight) AS DECIMAL) "
+                       ."+100.0*(100.0 - CAST(SUM(weight) AS DECIMAL))) "
+                       ." / 100.0 END, 2) AS maxsc "
+                       ."FROM test WHERE courseID=".(string)$_GET["id"])->fetch_assoc();
 ?>
 <div class="content-block">
     <table class="key-val-table">
@@ -35,17 +44,13 @@ $res = $sqlcon->query($query)->fetch_assoc();
                 <td>
                     Current Average Score
                 </td>
-                <td>
-                    TODO
-                </td>
+                <td><?php echo $score["avgs"]; ?></td>
             </tr>
             <tr>
                 <td>
                     Maximum Possible Score
                 </td>
-                <td>
-                    TODO
-                </td>
+                <td><?php echo $score["maxsc"]; ?></td>
             </tr>
             <tr>
                 <td>
