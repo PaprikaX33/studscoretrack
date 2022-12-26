@@ -20,9 +20,9 @@ $grade = $_POST["grade"]  == '' ? 60 : $_POST["grade"];
 
 $stmt->bind_param("ssiii", ...[$ename, $cname, $last_sem + 1, $credit, $grade]);
 $stmt->execute();
-$courseid = $sqlcon->query("SELECT MAX(id) FROM course;")->fetch_assoc()['id'];
+$courseid = $sqlcon->query("SELECT MAX(id) AS id FROM course;")->fetch_assoc()['id'];
 $sqlcon->close();
-header('Location: /course.php?id='.(string)$courseid);
+header("Location: /course.php?id={$courseid}");
 die();
 /*
  * Local Variables:

@@ -24,7 +24,7 @@ $stmt = $sqlcon->prepare($query);
 $stmt->bind_param("isii", ...[$cid, $name, $score, $weight]);
 $stmt->execute();
 $sqlcon->close();
-header('Location: /course.php?id='.(string)$cid);
+header("Location: /course.php?id={$cid}");
 die();
 /*
  * Local Variables:

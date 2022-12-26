@@ -22,7 +22,7 @@ require_once "fragment/header.php";
             <tbody>
                 <tr>
                     <td>
-                        <label for="tname">
+                        <label for="tname"><?php echo $LANG["nt-title"]; ?>
                             Test Title
                         </label>
                     </td>
@@ -32,7 +32,7 @@ require_once "fragment/header.php";
                 </tr>
                 <tr>
                     <td>
-                        <label for="twg">
+                        <label for="twg"><?php echo $LANG["nt-weigh"]; ?>
                             Test Weight
                         </label>
                     </td>
