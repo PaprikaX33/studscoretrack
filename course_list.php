@@ -49,7 +49,7 @@ require_once "fragment/header.php";
                     $passability = $score["avgs"] >= $row["passing"];
                 }
                 else {
-                    $passablity = $score["maxsc"] >= $row["passing"];
+                    $passability = $score["maxsc"] >= $row["passing"];
                 }
                 printf("<tr onclick=\"window.location='/course.php?id=%d';\">
                 <td class=\"course-name\">

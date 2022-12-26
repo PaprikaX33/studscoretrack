@@ -10,16 +10,15 @@ $sqlcon = db_init();
 $last_sem = $sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_row()[0];
 $last_sem ??= 0;
 
-$query = "INSERT INTO course(en_name, zh_name, semester, credit, numoftest, passing)
-VALUES (?, ?, ?, ?, ?, ?);";
+$query = "INSERT INTO course(en_name, zh_name, semester, credit, passing)
+VALUES (?, ?, ?, ?, ?);";
 $stmt = $sqlcon->prepare($query);
 $ename = $_POST["ename"];
 $cname = $_POST["cname"];
 $credit = $_POST["credit"];
-$test = $_POST["test"];
 $grade = $_POST["grade"];
 
-$stmt->bind_param("ssiiii", ...[$ename, $cname, $last_sem + 1, $credit, $test, $grade]);
+$stmt->bind_param("ssiii", ...[$ename, $cname, $last_sem + 1, $credit, $grade]);
 $stmt->execute();
 $courseid = $sqlcon->query("SELECT MAX(id) FROM course;")->fetch_assoc()['id'];
 $sqlcon->close();

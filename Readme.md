@@ -30,7 +30,7 @@ See `language/lang_en.php` for translation reference.
 
 ### Test Score Weight
 Test score weight should be added in total to 100.
-If the total weight is over than 100, then 
+If the total weight is over than 100, then the maximum possible score will be undefined, but the average score is still accurate
 
 ## CSRF
 No csrf protection is implemented.

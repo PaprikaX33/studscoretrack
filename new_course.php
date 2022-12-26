@@ -33,7 +33,9 @@ require_once "fragment/header.php";
                         </label>
                     </td>
                     <td>
-                        <input id="cred" name="credit" type="text" inputmode="numeric" pattern="\d*" required />
+                        <input id="cred" name="credit" type="text"
+                               inputmode="numeric" pattern="\d*"
+                               value="3" required />
                     </td>
                 </tr>
                 <tr>

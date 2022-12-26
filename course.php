@@ -42,15 +42,28 @@ $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
             </tr>
             <tr>
                 <td>
-                    Current Average Score
+                    Average Entered Score
                 </td>
                 <td><?php echo $score["avgs"]; ?></td>
             </tr>
             <tr>
-                <td>
-                    Maximum Possible Score
-                </td>
-                <td><?php echo $score["maxsc"]; ?></td>
+                <?php
+                echo "<td>";
+                if(!$res["archived"]){
+                    echo "Maximum Possible Score";
+                }
+                else {
+                    echo "Course Score";
+                }
+                echo "</td>";
+                echo "<td>";
+                if(!$res["archived"]){
+                    echo $score["maxsc"];
+                }
+                else {
+                }
+                echo "</td>";
+                ?>
             </tr>
             <tr>
                 <td>
@@ -75,7 +88,7 @@ $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
 </div>
 <div class="content-block">
     <h2>Test Results</h2><?php
-                         if (!$res["archived"]){
+                         if(!$res["archived"]){
                              printf("<div class=\"control-block\">"
                                    ."<a href=\"/new_test.php?cid=%d\">Add new test result</a>"
                                    ."</div>", $_GET['id']);
