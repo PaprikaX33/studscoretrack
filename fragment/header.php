@@ -12,7 +12,7 @@ function gen_language_path(string $language_tag): string{
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $LANG["tag"] ?>">
+<html lang="<?php echo $LANG["http-lang-tag"] ?>">
     <head>
         <title><?php echo $LANG[$PAGE_TITLE_TAG] ?>- Score Tracker</title>
         <link rel="stylesheet" type="text/css" href="css/heading.css">
@@ -27,7 +27,7 @@ function gen_language_path(string $language_tag): string{
                 <nav id="header-container">
                     <ul>
                         <li><a href="/course_list.php">ScoreTracker</a></li>
-                        <li><a href="/archived.php">Archived</a></li>
+                        <li><a href="/archived.php"><?php echo $LANG["header-arch"]; ?></a></li>
                         <li id="header-mid-pad"></li>
                         <li id="header-lang">
                             <div>

@@ -22,9 +22,7 @@ require_once "fragment/header.php";
             <tbody>
                 <tr>
                     <td>
-                        <label for="tname">
-                            Test Title
-                        </label>
+                        <label for="tname"><?php echo $LANG["nt-title"]; ?></label>
                     </td>
                     <td>
                         <input id="tname" name="name" type="text" />
@@ -32,9 +30,7 @@ require_once "fragment/header.php";
                 </tr>
                 <tr>
                     <td>
-                        <label for="twg">
-                            Test Weight
-                        </label>
+                        <label for="twg"><?php echo $LANG["nt-weigh"]; ?></label>
                     </td>
                     <td>
                         <input id="twg" name="weight" type="text" inputmode="numeric" pattern="\d*" required />
@@ -42,9 +38,7 @@ require_once "fragment/header.php";
                 </tr>
                 <tr>
                     <td>
-                        <label for="ts">
-                            Test Score
-                        </label>
+                        <label for="ts"><?php echo $LANG["nt-score"]; ?></label>
                     </td>
                     <td>
                         <input id="ts" name="score" type="text" inputmode="numeric" pattern="\d*" required />
@@ -53,7 +47,7 @@ require_once "fragment/header.php";
                 <tr>
                     <td></td>
                     <td>
-                        <input type="submit" value="Add New Test" />
+                        <input type="submit" value="<?php echo $LANG["nt-but-submit"]; ?>" />
                     </td>
                 </tr>
             </tbody>

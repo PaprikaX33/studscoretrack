@@ -13,16 +13,16 @@ $last_sem ??= 0;
 $query = "INSERT INTO course(en_name, zh_name, semester, credit, passing)
 VALUES (?, ?, ?, ?, ?);";
 $stmt = $sqlcon->prepare($query);
-$ename = $_POST["ename"];
-$cname = $_POST["cname"];
-$credit = $_POST["credit"];
-$grade = $_POST["grade"];
+$ename = $_POST["ename"] == '' ? NULL : $_POST["ename"];
+$cname = $_POST["cname"] == '' ? NULL : $_POST["cname"];
+$credit = $_POST["credit"] == '' ? 3 : $_POST["credit"];
+$grade = $_POST["grade"]  == '' ? 60 : $_POST["grade"];
 
 $stmt->bind_param("ssiii", ...[$ename, $cname, $last_sem + 1, $credit, $grade]);
 $stmt->execute();
-$courseid = $sqlcon->query("SELECT MAX(id) FROM course;")->fetch_assoc()['id'];
+$courseid = $sqlcon->query("SELECT MAX(id) AS id FROM course;")->fetch_assoc()['id'];
 $sqlcon->close();
-header('Location: /course.php?id='.(string)$courseid);
+header("Location: /course.php?id={$courseid}");
 die();
 /*
  * Local Variables:

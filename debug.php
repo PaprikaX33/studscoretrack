@@ -80,21 +80,8 @@ echo "</pre>";
                         var_dump($sqlcon->query("SELECT * FROM course;")->fetch_all());
                         break;
                     case "custa":
-                        $generatorQ = "
-CREATE TABLE foo (
-id INT NOT NULL AUTO_INCREMENT,
-PRIMARY KEY (id)
-);
-CREATE TABLE bar (
-id INT NOT NULL AUTO_INCREMENT,
-fooid INT NOT NULL,
-PRIMARY KEY (id),
-FOREIGN KEY (fooid) REFERENCES foo(id)
-);";
-                        $sqlcon->multi_query($generatorQ);
-                        do{
-                            $result = $sqlcon->store_result();
-                        }while($sqlcon->next_result());
+                        echo $sqlcon->query("SELECT MAX(id) AS id FROM course;")
+                                    ->fetch_assoc()['id'];
                         break;
                     case "popu":
                         $inserterQ = "
