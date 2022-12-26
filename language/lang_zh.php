@@ -6,6 +6,7 @@ return ["id" => "zh"
       , "page-archive-title" => "存檔課程"
       , "page-course-data-title" => "課程"
       , "page-new-course-title" => "新課程"
+      , "page-new-test-title" => "新考試"
 
       , "list-new" => "添加新課程"
       , "list-current-sem" => "本學期"
@@ -33,14 +34,19 @@ return ["id" => "zh"
       , "cour-test-res" => "考試成績"
       , "cour-new-test" => "添加新的考試成績"
       , "cour-res-tit" => "考試題目"
-      , "cour-res-scr" => "分數"
-      , "cour-res-wgh" => "重量??????"
+      , "cour-res-scr" => "考試成績"
+      , "cour-res-wgh" => "考試權重??????"
 
       , "nc-en-name" => "課程英文名稱"
       , "nc-zh-name" => "課程中文名稱"
       , "nc-cred" => "課程學分"
       , "nc-passing" => "最低及格分數"
       , "nc-but-submit" => "添加新課程"
+
+      , "nt-title" => "考試題目"
+      , "nt-weigh" => "考試權重"
+      , "nt-score" => "考試成績"
+      , "nt-but-submit" => "添加新考試"
 ];
 /*
  * Local Variables:
