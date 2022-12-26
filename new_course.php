@@ -38,16 +38,6 @@ require_once "fragment/header.php";
                 </tr>
                 <tr>
                     <td>
-                        <label for="count">
-                            Number of test
-                        </label>
-                    </td>
-                    <td>
-                        <input id="count" name="test" type="text" inputmode="numeric" pattern="\d*" value="0" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <label for="cgr">
                             Passing grade
                         </label>
