@@ -37,7 +37,7 @@ require_once "fragment/header.php";
             $query = "SELECT courseID AS id, "
                     .$lang_name." AS name FROM course WHERE archived=FALSE";
             $res = $sqlcon->query($query);
-            while ($row = $res->fetch_assoc()) {
+            while($row = $res->fetch_assoc()){
                 printf("<tr onclick=\"window.location='/course.php?id=%d';\">
                 <td class=\"course-name\">
                     %s

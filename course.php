@@ -15,7 +15,6 @@ if($_GET["id"] > $maxcourse){
 $query = "SELECT en_name, zh_name, credit, semester, passing, archived
  FROM course WHERE courseID=".(string)$_GET["id"];
 $res = $sqlcon->query($query)->fetch_assoc();
-$sqlcon->close();
 ?>
 <div class="content-block">
     <table class="key-val-table">
@@ -72,8 +71,9 @@ $sqlcon->close();
 <div class="content-block">
     <h2>Test Results</h2><?php
                          if (!$res["archived"]){
-                             printf("<div class=\"control-block\">
-<a href=\"/new_test.php?cid=%d\">Add new test result</a></div>", $_GET['id']);
+                             printf("<div class=\"control-block\">"
+                                   ."<a href=\"/new_test.php?cid=%d\">Add new test result</a>"
+                                   ."</div>", $_GET['id']);
                          }
                          ?>
 </div>
@@ -84,38 +84,22 @@ $sqlcon->close();
                 <th>Test Title</th>
                 <th>Score</th>
                 <th>Weight</th>
-                <th>Note</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="score-name">
-                    Quiz1
-                </td>
-                <td class="score-point">
-                    90
-                </td>
-                <td class="score-weight">
-                    100
-                </td>
-                <td class="score-note">
-                    None
-                </td>
-            </tr>
-            <tr>
-                <td class="score-name">
-                    Quiz2
-                </td>
-                <td class="score-point">
-                    90
-                </td>
-                <td class="score-weight">
-                    100
-                </td>
-                <td class="score-note">
-                    None
-                </td>
-            </tr>
+            <?php
+            $testquery = "SELECT testID AS id, name, score, weight "
+                        ."FROM test WHERE courseID=".(string)$_GET['id'];
+            $testres = $sqlcon->query($testquery);
+            while($trow = $testres->fetch_assoc()){
+                printf("<tr>
+                <td class=\"test-name\">%s</td>
+                <td class=\"test-score\">%d</td>
+                <td class=\"test-weight\">%d</td>
+                </tr>", $trow["name"], $trow["score"], $trow["weight"]);
+            }
+            $sqlcon->close();
+            ?>
         </tbody>
     </table>
 </div>
