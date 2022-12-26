@@ -4,6 +4,7 @@ return ["id" => "zh"
       , "header-arch" => "上學期"
       , "page-course-title" => "課程列表"
       , "page-archive-title" => "存檔課程"
+      , "page-course-data-title" => "課程"
 
       , "list-new" => "添加新課程"
       , "list-current-sem" => "本學期"
@@ -19,6 +20,20 @@ return ["id" => "zh"
       , "arch-header-score" => "分數"
       , "arch-header-cred" => "信用"
       , "arch-header-sem" => "學期"
+
+      , "cour-en-name" => "課程英文名稱"
+      , "cour-zh-name" => "課程中文名稱"
+      , "cour-avg-sc" => "平均輸入分數"
+      , "cour-max-sc" => "最高可能得分"
+      , "cour-cr-sc" => "課程分數"
+      , "cour-cred" => "課程學分"
+      , "cour-pass" => "合格等級的最低平均分數"
+      , "cour-sem" => "學期"
+      , "cour-test-res" => "考試成績"
+      , "cour-new-test" => "添加新的考試成績"
+      , "cour-res-tit" => "考試題目"
+      , "cour-res-scr" => "分數"
+      , "cour-res-wgh" => "重量??????"
 ];
 /*
  * Local Variables:

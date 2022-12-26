@@ -21,39 +21,32 @@ $res = $sqlcon->query($query)->fetch_assoc();
 <div class="content-block">
     <table class="key-val-table">
         <tbody>
-            <tr>
-                <td>
-                    Course English Name
-                </td>
-                <td><?php echo $res["en_name"] ?></td>
-            </tr>
-            <tr>
-                <td>
-                    Course Chinese name
-                </td>
-                <td><?php echo $res["zh_name"] ?></td>
-            </tr>
-            <tr>
-                <td>
-                    Average Entered Score
-                </td>
-                <td><?php
-                    if($res["weight"] == 0){
-                        echo 0;
-                    }
-                    else {
-                        echo (float)$res["score"] / (float)$res["weight"];
-                    } ?>
-                </td>
-            </tr>
+            <tr><?php
+                echo "<td>" . $LANG["cour-en-name"] . "</td>";
+                echo "<td>" . $res["en_name"] . "</td>";
+                ?></tr>
+            <tr><?php
+                echo "<td>" . $LANG["cour-zh-name"] . "</td>";
+                echo "<td>" . $res["zh_name"] . "</td>";
+                ?></tr>
+            <tr><?php
+                echo "<td>" . $LANG["cour-avg-sc"] . "</td><td>";
+                if($res["weight"] == 0){
+                    echo 0;
+                }
+                else {
+                    echo (float)$res["score"] / (float)$res["weight"];
+                }
+                echo "</td>"
+                ?></tr>
             <tr>
                 <?php
                 echo "<td>";
                 if(!$res["archived"]){
-                    echo "Maximum Possible Score";
+                    echo $LANG["cour-max-sc"];
                 }
                 else {
-                    echo "Course Score";
+                    echo $LANG["cour-cr-sc"];
                 }
                 echo "</td>";
                 echo "<td>";
@@ -71,43 +64,38 @@ $res = $sqlcon->query($query)->fetch_assoc();
                 echo "</td>";
                 ?>
             </tr>
-            <tr>
-                <td>
-                    Course Credits
-                </td>
-                <td><?php echo $res["credit"] ?></td>
-            </tr>
-            <tr>
-                <td>
-                    Minimum average score for passable grade
-                </td>
-                <td><?php echo $res["passing"] ?></td>
-            </tr>
-            <tr>
-                <td>
-                    Semester
-                </td>
-                <td><?php echo $res["semester"] ?></td>
-            </tr>
+            <tr><?php
+                echo "<td>" . $LANG["cour-cred"] . "</td>";
+                echo "<td>" . $res["credit"] . "</td>";
+                ?></tr>
+            <tr><?php
+                echo "<td>" . $LANG["cour-pass"] . "</td>";
+                echo "<td>" . $res["passing"] . "</td>";
+                ?></tr>
+            <tr><?php
+                echo "<td>" . $LANG["cour-sem"] . "</td>";
+                echo "<td>" . $res["semester"] . "</td>";
+                ?></tr>
         </tbody>
     </table>
 </div>
 <div class="content-block">
-    <h2>Test Results</h2><?php
-                         if(!$res["archived"]){
-                             printf("<div class=\"control-block\">"
-                                   ."<a href=\"/new_test.php?cid=%d\">Add new test result</a>"
-                                   ."</div>", $_GET['id']);
-                         }
-                         ?>
+    <?php
+    echo "<h2>" . $LANG["cour-test-res"] . "</h2>";
+    if(!$res["archived"]){
+        printf("<div class=\"control-block\">"
+              ."<a href=\"/new_test.php?cid=%d\">%s</a>"
+              ."</div>", $_GET['id'], $LANG["cour-new-test"]);
+    }
+    ?>
 </div>
 <div class="content-block">
     <table>
         <thead>
             <tr>
-                <th>Test Title</th>
-                <th>Score</th>
-                <th>Weight</th>
+                <th><?php echo $LANG["cour-res-tit"]; ?></th>
+                <th><?php echo $LANG["cour-res-scr"]; ?></th>
+                <th><?php echo $LANG["cour-res-wgh"]; ?></th>
             </tr>
         </thead>
         <tbody>
