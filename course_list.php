@@ -31,7 +31,7 @@ require_once "fragment/header.php";
             if($LANG["id"] == "zh"){
                 $lang_name = "zh_name";
             }
-            $query = "SELECT courseID AS id, "
+            $query = "SELECT id, "
                     .$lang_name." AS name, passing "
                     ."FROM course WHERE archived=FALSE ORDER BY semester DESC";
             $res = $sqlcon->query($query);
@@ -64,8 +64,9 @@ require_once "fragment/header.php";
                 <td class=\"course-pass\">
                     %s
                 </td>
-            </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"]), $score["avgs"], $score["maxsc"],
-                       ($passability ? "Passable" : "Not-Passable"));
+            </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"])
+                     , $score["avgs"], $score["maxsc"]
+                     , ($passability ? "Passable" : "Not-Passable"));
             }
             $sqlcon->close();
             ?>

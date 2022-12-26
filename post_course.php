@@ -21,7 +21,7 @@ $grade = $_POST["grade"];
 
 $stmt->bind_param("ssiiii", ...[$ename, $cname, $last_sem + 1, $credit, $test, $grade]);
 $stmt->execute();
-$courseid = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
+$courseid = $sqlcon->query("SELECT MAX(id) FROM course;")->fetch_assoc()['id'];
 $sqlcon->close();
 header('Location: /course.php?id='.(string)$courseid);
 die();

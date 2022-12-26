@@ -7,13 +7,13 @@ $PAGE_TITLE_TAG = "page-course-data-title";
 require_once "include/db_con.php";
 require_once "fragment/header.php";
 $sqlcon = db_init();
-$maxcourse = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
+$maxcourse = $sqlcon->query("SELECT MAX(id) FROM course;")->fetch_row()[0];
 if($_GET["id"] > $maxcourse){
     header('Location: /course_list.php');
     die();
 }
 $query = "SELECT en_name, zh_name, credit, semester, passing, archived
- FROM course WHERE courseID=".(string)$_GET["id"];
+ FROM course WHERE id=".(string)$_GET["id"];
 $res = $sqlcon->query($query)->fetch_assoc();
 $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
                        ."CAST(SUM(score * weight) AS DECIMAL) / "
@@ -93,7 +93,7 @@ $score = $sqlcon->query("SELECT CASE WHEN SUM(weight)=0 THEN 0 ELSE "
         </thead>
         <tbody>
             <?php
-            $testquery = "SELECT testID AS id, name, score, weight "
+            $testquery = "SELECT id, name, score, weight "
                         ."FROM test WHERE courseID=".(string)$_GET['id'];
             $testres = $sqlcon->query($testquery);
             while($trow = $testres->fetch_assoc()){

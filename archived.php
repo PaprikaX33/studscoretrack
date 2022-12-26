@@ -22,7 +22,7 @@ require_once "fragment/header.php";
                 break;
             default: break;
         }
-        $query = "SELECT courseID AS id, "
+        $query = "SELECT id, "
                 .$lang_name." AS name, credit, semester FROM course WHERE archived=TRUE";
         $res = $sqlcon->query($query);
         while($row = $res->fetch_assoc()){
@@ -43,7 +43,8 @@ require_once "fragment/header.php";
                 <td class=\"course-semester\">
                     %d
                 </td>
-            </tr>", $row["id"], $row["name"], $score["avgs"], $row["credit"], $row["semester"]);
+            </tr>", $row["id"], $row["name"]
+                 , $score["avgs"], $row["credit"], $row["semester"]);
         }
         $sqlcon->close();
         ?>

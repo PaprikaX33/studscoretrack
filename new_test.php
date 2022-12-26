@@ -7,7 +7,7 @@ $PAGE_TITLE_TAG = "page-new-test-title";
 require_once "include/db_con.php";
 $cid = $_GET["cid"];
 $sqlcon = db_init();
-$maxcourse = $sqlcon->query("SELECT MAX(courseID) FROM course;")->fetch_row()[0];
+$maxcourse = $sqlcon->query("SELECT MAX(id) FROM course;")->fetch_row()[0];
 if($cid > $maxcourse){
     header('Location: /course_list.php');
     die();
