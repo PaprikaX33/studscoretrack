@@ -1,5 +1,6 @@
 <?php
 $PAGE_TITLE_TAG = "page-archive-title";
+require_once "include/db_con.php";
 require_once "fragment/header.php";
 ?>
 <table>
@@ -12,34 +13,36 @@ require_once "fragment/header.php";
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td class="course-name">
-                Seminar on something something
-            </td>
-            <td class="course-score">
-                90
-            </td>
-            <td class="course-max">
-                100
-            </td>
-            <td class="course-pass">
-                Passable
-            </td>
-        </tr>
-        <tr>
-            <td class="course-name">
-                Seminar on nothing really
-            </td>
-            <td class="course-score">
-                100
-            </td>
-            <td class="course-max">
-                1000
-            </td>
-            <td class="course-pass">
-                Maybe
-            </td>
-        </tr>
+        <?php
+        $sqlcon = db_init();
+        $lang_name = "en_name";
+        switch($LANG["id"]){
+            case "zh":
+                $lang_name = "zh_name";
+                break;
+            default: break;
+        }
+        $query = "SELECT courseID AS id, "
+                .$lang_name." AS name, credit, semester FROM course WHERE archived=TRUE";
+        $res = $sqlcon->query($query);
+        while ($row = $res->fetch_assoc()) {
+            printf("<tr onclick=\"window.location='/course.php?id=%d';\">
+                <td class=\"course-name\">
+                    %s
+                </td>
+                <td class=\"course-score\">
+                    90
+                </td>
+                <td class=\"course-credit\">
+                    %d
+                </td>
+                <td class=\"course-semester\">
+                    %d
+                </td>
+            </tr>", $row["id"], $row["name"], $row["credit"], $row["semester"]);
+        }
+        $sqlcon->close();
+        ?>
     </tbody>
 </table>
 <?php

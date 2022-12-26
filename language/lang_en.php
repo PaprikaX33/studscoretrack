@@ -1,5 +1,6 @@
 <?php
-return ["tag" => "en"
+return ["id" => "en"
+      , "tag" => "en"
       , "title" => "Score Tracker"
       , "page-course-title" => "Course List"
       , "page-archive-title" => "Archived Courses"
