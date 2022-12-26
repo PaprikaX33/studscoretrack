@@ -91,9 +91,7 @@ FOREIGN KEY (courseID) REFERENCES course(id)
                         $iter = 0;
                         do{
                             echo (string)$iter++ . " ";
-                            if($result = $sqlcon->store_result()){
-
-                            }
+                            //$sqlcon->store_result();
                         }while($sqlcon->next_result());
                         break;
                     case "del":
@@ -122,14 +120,31 @@ FOREIGN KEY (fooid) REFERENCES foo(id)
                             $result = $sqlcon->store_result();
                         }while($sqlcon->next_result());
                         break;
-                    case "custb":
-                        $res = $sqlcon->query("SELECT CAST(SUM(score * weight) AS DECIMAL) / "
-                                             ."CAST(SUM(weight) AS DECIMAL) AS avgs, "
-                                             ."SUM(weight) as weight"
-                                             ."FROM test WHERE courseID=3");
-                        while($row = $res->fetch_assoc()){
-                            var_dump($row);
-                        }
+                    case "popu":
+                        $inserterQ = "
+INSERT INTO `course` (`id`, `en_name`, `zh_name`, `semester`, `credit`, `passing`, `archived`)
+ VALUES(1, 'sakura', '桜', 1, 3, 60, 1);
+INSERT INTO `course` (`id`, `en_name`, `zh_name`, `semester`, `credit`, `passing`, `archived`)
+ VALUES(2, 'kuro', '黒', 1, 3, 40, 1);
+INSERT INTO `course` (`id`, `en_name`, `zh_name`, `semester`, `credit`, `passing`, `archived`)
+ VALUES(3, 'tokyo', '東京', 2, 3, 60, 0);
+
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(1, 1, 'Q1', 10, 30);
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(2, 1, 'Q2', 100, 30);
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(3, 1, 'Q3', 80, 40);
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(4, 2, 'Q1', 50, 25);
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(5, 2, 'Q2', 75, 25);
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(6, 2, 'Q3', 30, 25);
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(7, 3, 'Q1', 60, 10);
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(8, 3, 'Q2', 70, 20);
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(9, 3, 'Q3', 85, 20);
+INSERT INTO `test` (`id`, `courseID`, `name`, `score`, `weight`) VALUES(10, 3, 'Q4', 50, 20);";
+                        $sqlcon->multi_query($inserterQ);
+                        $iter = 0;
+                        do{
+                            echo (string)$iter++ . " ";
+                            //$sqlcon->store_result();
+                        }while($sqlcon->next_result());
                         break;
                     default: break;
                 }
