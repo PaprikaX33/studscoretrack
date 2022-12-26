@@ -28,7 +28,6 @@ function gen_language_path(string $language_tag): string{
                     <ul>
                         <li><a href="/course_list.php">ScoreTracker</a></li>
                         <li><a href="/archived.php">Archived</a></li>
-                        <li><a href="/summary.php">Summary</a></li>
                         <li id="header-mid-pad"></li>
                         <li id="header-lang">
                             <div>
