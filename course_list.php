@@ -3,19 +3,39 @@ $PAGE_TITLE_TAG = "page-course-title";
 require_once "include/db_con.php";
 require_once "fragment/header.php";
 $sqlcon = db_init();
+$lang_name = "en_name";
+if($LANG["id"] == "zh"){
+    $lang_name = "zh_name";
+}
+$query = "SELECT id, "
+        .$lang_name." AS name, passing,
+(SELECT SUM(score * weight) FROM test WHERE courseID=course.id) as score,
+(SELECT SUM(weight) FROM test WHERE courseID=course.id) as weight
+ FROM course WHERE archived=FALSE ORDER BY semester DESC";
+$res = $sqlcon->query($query);
 ?>
+
 <div class="content-block">
     <div class="control-block">
         <div>
-            <a href="/new_course.php">Add new course</a>
-        </div>
-        <div class="flex-pad"></div>
-        <div>Current Semester :
-            <?php echo $sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_row()[0]; ?>
+            <a href="/new_course.php"><?php echo $LANG["list-new"];  ?></a>
         </div>
         <div class="flex-pad"></div>
         <div>
-            <a href="/semester_archive.php">Archive this semester</a>
+            <?php echo $LANG["list-current-sem"]
+                     . " : "
+                     . $sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")
+                              ->fetch_row()[0]; ?>
+        </div>
+        <div class="flex-pad"></div>
+        <div><?php
+             if($res->num_rows > 0){
+                 echo "<a href=\"/semester_archive.php\">" . $LANG["list-arch"] . "</a>";
+             }
+             else{
+                 echo " ";
+             }
+             ?>
         </div>
     </div>
 </div>
@@ -23,24 +43,14 @@ $sqlcon = db_init();
     <table>
         <thead>
             <tr>
-                <th>Course Title</th>
-                <th>Average Score</th>
-                <th>Maximum Score</th>
-                <th>Passable</th>
+                <th><?php echo $LANG["list-header-title"]; ?></th>
+                <th><?php echo $LANG["list-header-avg"]; ?></th>
+                <th><?php echo $LANG["list-header-max"]; ?></th>
+                <th><?php echo $LANG["list-header-pass"]; ?></th>
             </tr>
         </thead>
         <tbody>
             <?php
-            $lang_name = "en_name";
-            if($LANG["id"] == "zh"){
-                $lang_name = "zh_name";
-            }
-            $query = "SELECT id, "
-                    .$lang_name." AS name, passing,
-(SELECT SUM(score * weight) FROM test WHERE courseID=course.id) as score,
-(SELECT SUM(weight) FROM test WHERE courseID=course.id) as weight
- FROM course WHERE archived=FALSE ORDER BY semester DESC";
-            $res = $sqlcon->query($query);
             while($row = $res->fetch_assoc()){
                 if($row["weight"] == 0){
                     $avg = 0;
@@ -71,9 +81,9 @@ $sqlcon = db_init();
                 </td>
             </tr>", $row["id"], ($row["name"] == '' ? "--" : $row["name"])
                      , $avg, $maxc
-                     , ($passability ? "Passable" : "Not-Passable"));
-            }
-            $sqlcon->close();
+                     , ($passability ? $LANG["list-pass-pos"] : $LANG["list-pass-neg"]));
+                }
+                    $sqlcon->close();
             ?>
         </tbody>
     </table>
