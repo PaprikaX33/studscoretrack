@@ -2,6 +2,7 @@
 $PAGE_TITLE_TAG = "page-course-title";
 require_once "include/db_con.php";
 require_once "fragment/header.php";
+$sqlcon = db_init();
 ?>
 <div class="content-block">
     <div class="control-block">
@@ -9,8 +10,12 @@ require_once "fragment/header.php";
             <a href="/new_course.php">Add new course</a>
         </div>
         <div class="flex-pad"></div>
+        <div>Current Semester :
+            <?php echo $sqlcon->query("SELECT MAX(semester) FROM course WHERE archived=TRUE;")->fetch_row()[0]; ?>
+        </div>
+        <div class="flex-pad"></div>
         <div>
-            Archive this semester
+            <a href="/semester_archive.php">Archive this semester</a>
         </div>
     </div>
 </div>
@@ -26,7 +31,6 @@ require_once "fragment/header.php";
         </thead>
         <tbody>
             <?php
-            $sqlcon = db_init();
             $lang_name = "en_name";
             if($LANG["id"] == "zh"){
                 $lang_name = "zh_name";
