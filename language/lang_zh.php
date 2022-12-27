@@ -20,7 +20,7 @@ return ["id" => "zh"
 
       , "arch-header-title" => "課程名"
       , "arch-header-score" => "分數"
-      , "arch-header-cred" => "信用"
+      , "arch-header-cred" => "學分"
       , "arch-header-sem" => "學期"
 
       , "cour-en-name" => "課程英文名稱"
@@ -35,7 +35,7 @@ return ["id" => "zh"
       , "cour-new-test" => "添加新的考試成績"
       , "cour-res-tit" => "考試題目"
       , "cour-res-scr" => "考試成績"
-      , "cour-res-wgh" => "考試權重??????"
+      , "cour-res-wgh" => "考試權重"
 
       , "nc-en-name" => "課程英文名稱"
       , "nc-zh-name" => "課程中文名稱"
